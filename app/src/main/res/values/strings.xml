@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Jeopardy</string>
+    <string name="app_name">Jeopardy Game</string>
+    <string name="points_200">200</string>
+    <string name="points_400">400</string>
+    <string name="points_600">600</string>
+    <string name="points_800">800</string>
+    <string name="points_1000">1000</string>
+    <string name="points_1200">1200</string>
+    <string name="points_1600">1600</string>
+    <string name="points_2000">2000</string>
 </resources>
