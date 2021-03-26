@@ -16,5 +16,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/new_game" />
+
+        <Button
+            android:id="@+id/buttonDailyDouble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/daily_double" />
     </LinearLayout>
 </FrameLayout>
