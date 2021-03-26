@@ -8,6 +8,12 @@
     <string name="points_1200">1200</string>
     <string name="points_1600">1600</string>
     <string name="points_2000">2000</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="score">Score:</string>
+
+    <string name="back_to_first_round">Back To First Round</string>
+    <string name="double_jeopardy">Double Jeopardy</string>
+    <string name="final_jeopardy">Final jeopardy</string>
+
+    <string name="new_game">New Game</string>
 </resources>
