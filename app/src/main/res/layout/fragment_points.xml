@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnPoints1"
+            android:id="@+id/buttonPoints200"
             style="@style/PointsButtons"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:text="@string/points_200" />
 
         <Button
-            android:id="@+id/btnPoints2"
+            android:id="@+id/buttonPoints400"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -30,7 +30,7 @@
             android:text="@string/points_400" />
 
         <Button
-            android:id="@+id/btnPoints3"
+            android:id="@+id/buttonPoints600"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -38,7 +38,7 @@
             android:text="@string/points_600" />
 
         <Button
-            android:id="@+id/btnPoints4"
+            android:id="@+id/buttonPoints800"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -46,7 +46,7 @@
             android:text="@string/points_800" />
 
         <Button
-            android:id="@+id/btnPoints5"
+            android:id="@+id/buttonPoints1000"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
