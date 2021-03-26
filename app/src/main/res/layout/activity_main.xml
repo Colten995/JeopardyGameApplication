@@ -20,7 +20,7 @@
         <fragment
             android:id="@+id/fragment"
             android:name="ca.on.conestogac.jeopardygameapplication.PointsFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <fragment
