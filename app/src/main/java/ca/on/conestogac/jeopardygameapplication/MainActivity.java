@@ -58,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        View.OnClickListener newGameListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                totalScore = DEFAULT_SCORE;
+                textViewScore.setText(String.valueOf(totalScore));
+            }
+        };
+
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -81,5 +89,7 @@ public class MainActivity extends AppCompatActivity {
         buttonPoints600.setOnClickListener(pointsListener);
         buttonPoints800.setOnClickListener(pointsListener);
         buttonPoints1000.setOnClickListener(pointsListener);
+
+        buttonNewGame.setOnClickListener(newGameListener);
     }
 }
