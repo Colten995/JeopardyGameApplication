@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -12,23 +11,30 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
+        <fragment
+            android:id="@+id/fragment3"
+            android:name="ca.on.conestogac.jeopardygameapplication.NewGameFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-        </FrameLayout>
+        <fragment
+            android:id="@+id/fragment"
+            android:name="ca.on.conestogac.jeopardygameapplication.PointsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/fragment7"
+            android:name="ca.on.conestogac.jeopardygameapplication.ScoreFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="ca.on.conestogac.jeopardygameapplication.RoundButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_round_buttons" />
     </LinearLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-
-        android:background="@color/white"
-        app:itemTextColor="@color/black"
-        app:itemIconTint="@color/black"
-
-        app:menu="@menu/drawer_menu"
-        android:layout_gravity="start" />
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
