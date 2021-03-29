@@ -25,32 +25,24 @@
             android:id="@+id/buttonPoints400"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="@string/points_400" />
 
         <Button
             android:id="@+id/buttonPoints600"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="@string/points_600" />
 
         <Button
             android:id="@+id/buttonPoints800"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="@string/points_800" />
 
         <Button
             android:id="@+id/buttonPoints1000"
             style="@style/PointsButtons"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="@string/points_1000" />
     </LinearLayout>
 
