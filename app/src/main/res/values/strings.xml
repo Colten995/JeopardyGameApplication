@@ -16,4 +16,7 @@
     <string name="final_jeopardy">Final jeopardy</string>
 
     <string name="new_game">New Game</string>
+    <string name="daily_double">Daily Double</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
