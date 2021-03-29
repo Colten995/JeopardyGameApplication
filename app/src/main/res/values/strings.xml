@@ -10,4 +10,7 @@
     <string name="points_2000">2000</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- string resources for the open and close toggle nav menu drawer-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
