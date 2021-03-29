@@ -11,7 +11,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/fragment8"
+                android:name="ca.on.conestogac.jeopardygameapplication.ScoreFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment4"
@@ -21,16 +28,17 @@
 
             <fragment
                 android:id="@+id/fragment5"
-                android:name="ca.on.conestogac.jeopardygameapplication.ScoreAndRoundButtons"
+                android:name="ca.on.conestogac.jeopardygameapplication.RoundButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
         <fragment
-            android:id="@+id/fragment6"
+            android:id="@+id/fragment9"
             android:name="ca.on.conestogac.jeopardygameapplication.PointsFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScoreAndRoundButtons#newInstance} factory method to
+ * Use the {@link RoundButtons#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoreAndRoundButtons extends Fragment {
+public class RoundButtons extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class ScoreAndRoundButtons extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ScoreAndRoundButtons() {
+    public RoundButtons() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class ScoreAndRoundButtons extends Fragment {
      * @return A new instance of fragment ScoreAndRoundButtons.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScoreAndRoundButtons newInstance(String param1, String param2) {
-        ScoreAndRoundButtons fragment = new ScoreAndRoundButtons();
+    public static RoundButtons newInstance(String param1, String param2) {
+        RoundButtons fragment = new RoundButtons();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class ScoreAndRoundButtons extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_score_and_round_buttons, container, false);
+        return inflater.inflate(R.layout.fragment_round_buttons, container, false);
     }
 }
