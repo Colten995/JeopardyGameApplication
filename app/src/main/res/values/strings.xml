@@ -12,8 +12,17 @@
     <string name="score">Score:</string>
     <string name="email">Email</string>
     <string name="password">PassWord</string>
-    <string name="register"> create an account</string>
+    <string name="register">Are you new? Register</string>
     <string name="login">Login</string>
+    <string name="welcome">Welcome to Jeopardy game, create an Account</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_registration">Email</string>
+    <string name="password_registration">Password</string>
+    <string name="enter_password">Re-enter Password</string>
+    <string name="register_">register</string>
+    <string name="login_">Have you an account? Log in</string>
+
 
     <string name="back_to_first_round">Back To First Round</string>
     <string name="double_jeopardy">Double Jeopardy</string>
