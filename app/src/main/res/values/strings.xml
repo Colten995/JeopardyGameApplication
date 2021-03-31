@@ -10,6 +10,10 @@
     <string name="points_2000">2000</string>
 
     <string name="score">Score:</string>
+    <string name="email">Email</string>
+    <string name="password">PassWord</string>
+    <string name="register"> create an account</string>
+    <string name="login">Login</string>
 
     <string name="back_to_first_round">Back To First Round</string>
     <string name="double_jeopardy">Double Jeopardy</string>
