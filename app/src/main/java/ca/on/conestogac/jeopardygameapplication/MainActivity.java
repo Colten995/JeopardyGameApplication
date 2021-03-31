@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,11 +16,13 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+    private Button highscores;
+    private Button settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,67 +40,17 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         //we now enable our toggle
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //user defined method is called to open the fragments based on the option chose in our navigation menu
-       // setupNavDrawer();
-        Fragment fragment = new ScoreFragment();
-        //open a fragment transaction which we will use to replace our main activity layout with the fragment layout
-        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
-        //replace our framelayout in activity_main xml with the fragment
-        fragTransaction.replace(R.id.frame_layout, fragment);
-        fragTransaction.commit();
+        // Instantiate drawer buttons and set onClickListeners.
+        highscores = (Button) findViewById(R.id.btnHighscores);
+        highscores.setOnClickListener(this);
+        settings = (Button) findViewById(R.id.btnSettings);
+        settings.setOnClickListener(this);
         //then close the drawer menu once an item has been selected
         drawerLayout.closeDrawers();
 
 
     }
-   /* private void setupNavDrawer() {
-        //instantiate our navigation menu ui reference
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
-        //set a navigation listener to know which fragment is selected
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                //declare our fragment and put it to null for now until a menu option is selected
-                Fragment frag = null;
-                //going into our res > menu folder with our menu layout (drawer_menu.xml) i grab the id of the option selected so i know which one is selected
-                int itemID = item.getItemId();
-                //make an if, else if statement to open the fragment based on option selected
-                //this first if statement stores my first fragment tic tac toe into Fragment frag if it is selected
-                if(itemID == R.id.nav_points){
-                    frag = new PointsFragment();
-                }
-                //if tic tac toe fragment isnt selected we need to check if our second option (view records) option is selected
-                //store a new instance of the records fragment into our frag variable
-                else if (itemID == R.id.nav_score){
-                    frag = new ScoreFragment();
-                }
-                //lastly if tic tac toe and view records item was not selected, we check if user selects the contacts list open then store a new instance of the fragment into my frag variable to be displayed later
-                else if (itemID == R.id.nav_new_game){
-                    frag = new NewGameFragment();
-                }
-                else if (itemID == R.id.nav_settings){
-                    frag = new NewGameFragment();
-                }
-                //now we check if a fragment not empty, meaning theres an instance of a fragment
-                //so we load that into our activity_main.xml and open it, then close the drawers of our menu
-                if(frag != null){
-                    //open a fragment transaction which we will use to replace our main activity layout with the fragment layout
-                    FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
-                    //replace our framelayout in activity_main xml with the fragment
-                    fragTransaction.replace(R.id.frame_layout, frag);
-                    //commit the transaction
-                    fragTransaction.commit();
-                    //then close the drawer menu once an item has been selected
-                    drawerLayout.closeDrawers();
-                    return true;
-                }
 
-                //if frag is empty, then return false because there still hasn't been an option selected.
-                return false;
-            }
-        });
-    }
-    */
 
 
 
@@ -108,5 +61,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.equals(highscores)){
+        }
+        else if(v.equals(settings)){
+        }
     }
 }
