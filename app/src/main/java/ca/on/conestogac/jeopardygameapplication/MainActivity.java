@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //we now enable our toggle
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //user defined method is called to open the fragments based on the option chose in our navigation menu
-        setupNavDrawer();
+       // setupNavDrawer();
         Fragment fragment = new ScoreFragment();
         //open a fragment transaction which we will use to replace our main activity layout with the fragment layout
         FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void setupNavDrawer() {
+   /* private void setupNavDrawer() {
         //instantiate our navigation menu ui reference
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
         //set a navigation listener to know which fragment is selected
@@ -97,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
+
+
 
     //by default a menu item is set to false because it has not been touched and so this method is if user selects an item from the menu, it will return true because an item has been selected
     @Override
