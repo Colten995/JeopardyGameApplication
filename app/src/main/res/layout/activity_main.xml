@@ -26,25 +26,29 @@
                     android:id="@+id/fragment"
                     android:name="ca.on.conestogac.jeopardygameapplication.NewGameFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_new_game_and_daily_double" />
 
                 <fragment
                     android:id="@+id/fragment2"
                     android:name="ca.on.conestogac.jeopardygameapplication.PointsFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_points" />
 
                 <fragment
                     android:id="@+id/fragment3"
                     android:name="ca.on.conestogac.jeopardygameapplication.ScoreFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_score" />
 
                 <fragment
                     android:id="@+id/fragment4"
                     android:name="ca.on.conestogac.jeopardygameapplication.RoundButtons"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_round_buttons" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
