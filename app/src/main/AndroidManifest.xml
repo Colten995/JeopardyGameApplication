@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".DailyDoubleDialog"></activity>
-        <activity android:name=".PointsDialog" />
+        <activity
+            android:name=".DailyDoubleDialog"
+            android:theme="@style/DialogTheme" />
+        <activity
+            android:name=".PointsDialog"
+            android:theme="@style/DialogTheme"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

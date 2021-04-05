@@ -19,8 +19,8 @@ public class PointsDialogFragment extends DialogFragment {
     //This interface allows us to implement the onClick behavior of the Dialog buttons in the activity its called from
     //****The activity that shows this dialog needs to implement this interface
     public interface PointsDialogListener{
-        public void onDialogYesClick(DialogFragment dialog);
-        public void onDialogNoClick(DialogFragment dialog);
+        public void onPointsDialogYesClick(DialogFragment dialog);
+        public void onPointsDialogNoClick(DialogFragment dialog);
     }
 
     PointsDialogListener listener;
@@ -41,7 +41,7 @@ public class PointsDialogFragment extends DialogFragment {
         buttonYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDialogYesClick(PointsDialogFragment.this);
+                listener.onPointsDialogYesClick(PointsDialogFragment.this);
 
                 //Manually dismiss the dialog box because this is a custom button
                 dismiss();
@@ -50,7 +50,7 @@ public class PointsDialogFragment extends DialogFragment {
         buttonNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDialogNoClick(PointsDialogFragment.this);
+                listener.onPointsDialogNoClick(PointsDialogFragment.this);
                 dismiss();
             }
         });

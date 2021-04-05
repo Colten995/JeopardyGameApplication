@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
 
 
     private DrawerLayout drawerLayout;
@@ -32,10 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonPoints800;
     private Button buttonPoints1000;
     private Button buttonNewGame;
+    private Button buttonDailyDouble;
     private TextView textViewScore;
 
     private int pointsToAddOrSubtract;
     private int score;
+
+    private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        buttonDailyDouble =findViewById(R.id.buttonDailyDouble);
+
+        buttonDailyDouble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dailyDoubleDialog = new DailyDoubleDialogFragment();
+                dailyDoubleDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
+            }
+        });
+
+
+
         textViewScore = findViewById(R.id.textViewScore);
 
         View.OnClickListener pointsListener = new View.OnClickListener() {
@@ -104,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 DialogFragment pointsDialog = new PointsDialogFragment();
-                pointsDialog.show(getSupportFragmentManager(), "MainActivity");
+                pointsDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
             }
         };
 
@@ -134,14 +150,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onDialogYesClick(DialogFragment dialog) {
+    public void onPointsDialogYesClick(DialogFragment dialog) {
         score += pointsToAddOrSubtract;
         textViewScore.setText(String.valueOf(score));
     }
 
     @Override
-    public void onDialogNoClick(DialogFragment dialog) {
+    public void onPointsDialogNoClick(DialogFragment dialog) {
         score -= pointsToAddOrSubtract;
+        textViewScore.setText(String.valueOf(score));
+    }
+
+
+    @Override
+    public void onDailyDoubleDialogYesButtonClick(DialogFragment dialog, int wager) {
+        score += 2 * wager;
+        textViewScore.setText(String.valueOf(score));
+    }
+
+    @Override
+    public void onDailyDoubleDialogNoButtonClick(DialogFragment dialog, int wager) {
+        score -= 2 * wager;
         textViewScore.setText(String.valueOf(score));
     }
 }
