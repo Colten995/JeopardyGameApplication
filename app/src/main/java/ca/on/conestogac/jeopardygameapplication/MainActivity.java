@@ -28,12 +28,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonNewGame;
     private Button buttonDailyDouble;
     private Button buttonDoubleJeopardy;
+    private Button buttonBackToFirstRound;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
 
     private int pointsToAddOrSubtract;
     private int score;
-    private boolean double_jeopardy = false;
+    private boolean isDoubleJeopardyRound = false;
 
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
@@ -91,9 +92,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonDoubleJeopardy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double_jeopardy = true;
-                changePointButtonsToDoubleJeopardy();
-                textViewRoundTitle.setText(R.string.double_jeopardy);
+                goToDoubleJeopardyRound();
+            }
+        });
+        
+        buttonBackToFirstRound = findViewById(R.id.buttonFirstRound);
+        
+        buttonBackToFirstRound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFirstRound();
             }
         });
 
@@ -182,20 +190,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewScore.setText(String.valueOf(score));
     }
 
-    public void changePointButtonsToDoubleJeopardy()
+    public void goToDoubleJeopardyRound()
     {
+        buttonDoubleJeopardy.setVisibility(View.GONE);
+        buttonBackToFirstRound.setVisibility(View.VISIBLE);
+        isDoubleJeopardyRound = true;
+
         buttonPoints1.setText(R.string.points_400);
         buttonPoints2.setText(R.string.points_800);
         buttonPoints3.setText(R.string.points_1200);
         buttonPoints4.setText(R.string.points_1600);
         buttonPoints5.setText(R.string.points_2000);
+
+        textViewRoundTitle.setText(R.string.double_jeopardy);
     }
-    public void changePointButtonsToFirstRound()
+    public void goToFirstRound()
     {
+        buttonBackToFirstRound.setVisibility(View.GONE);
+        buttonDoubleJeopardy.setVisibility(View.VISIBLE);
+        isDoubleJeopardyRound = false;
+
         buttonPoints1.setText(R.string.points_200);
         buttonPoints2.setText(R.string.points_400);
         buttonPoints3.setText(R.string.points_600);
         buttonPoints4.setText(R.string.points_800);
         buttonPoints5.setText(R.string.points_1000);
+
+        textViewRoundTitle.setText(R.string.first_round_title);
     }
 }
