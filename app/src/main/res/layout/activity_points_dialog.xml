@@ -12,12 +12,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewPointsResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/textViewPointsDialogTitle"
+            style="@style/DialogTitleText"
             android:text="@string/did_you_answer_correct"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
