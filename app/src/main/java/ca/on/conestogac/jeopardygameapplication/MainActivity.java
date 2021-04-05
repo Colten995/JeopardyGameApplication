@@ -5,19 +5,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
 
@@ -27,23 +20,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button highscores;
     private Button settings;
 
-    private Button buttonPoints200;
-    private Button buttonPoints400;
-    private Button buttonPoints600;
-    private Button buttonPoints800;
-    private Button buttonPoints1000;
+    private Button buttonPoints1;
+    private Button buttonPoints2;
+    private Button buttonPoints3;
+    private Button buttonPoints4;
+    private Button buttonPoints5;
     private Button buttonNewGame;
     private Button buttonDailyDouble;
+    private Button buttonDoubleJeopardy;
     private TextView textViewScore;
 
     private int pointsToAddOrSubtract;
     private int score;
+    private boolean double_jeopardy = false;
 
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
@@ -65,11 +59,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //then close the drawer menu once an item has been selected
         drawerLayout.closeDrawers();
 
-        buttonPoints200 = findViewById(R.id.buttonPoints200);
-        buttonPoints400 = findViewById(R.id.buttonPoints400);
-        buttonPoints600 = findViewById(R.id.buttonPoints600);
-        buttonPoints800 = findViewById(R.id.buttonPoints800);
-        buttonPoints1000 = findViewById(R.id.buttonPoints1000);
+        buttonPoints1 = findViewById(R.id.buttonPoints1);
+        buttonPoints2 = findViewById(R.id.buttonPoints2);
+        buttonPoints3 = findViewById(R.id.buttonPoints3);
+        buttonPoints4 = findViewById(R.id.buttonPoints4);
+        buttonPoints5 = findViewById(R.id.buttonPoints5);
 
         buttonNewGame = findViewById(R.id.buttonNewGame);
 
@@ -91,7 +85,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        buttonDoubleJeopardy = findViewById(R.id.buttonSecondRound);
 
+        buttonDoubleJeopardy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double_jeopardy = true;
+            }
+        });
 
         textViewScore = findViewById(R.id.textViewScore);
 
@@ -99,36 +100,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                switch (v.getId()) {
-                    case R.id.buttonPoints200:
-                        pointsToAddOrSubtract = 200;
-                        break;
-                    case R.id.buttonPoints400:
-                        pointsToAddOrSubtract = 400;
-                        break;
-                    case R.id.buttonPoints600:
-                        pointsToAddOrSubtract = 600;
-                        break;
-                    case R.id.buttonPoints800:
-                        pointsToAddOrSubtract = 800;
-                        break;
-                    case R.id.buttonPoints1000:
-                        pointsToAddOrSubtract = 1000;
-                        break;
-                    default:
-                        break;
-                }
+                    pointsToAddOrSubtract = Integer.parseInt(((Button) v).getText().toString());
+
+                    /*switch (v.getId()) {
+                        case R.id.buttonPoints1:
+                            pointsToAddOrSubtract = 200;
+                            break;
+                        case R.id.buttonPoints2:
+                            pointsToAddOrSubtract = 400;
+                            break;
+                        case R.id.buttonPoints3:
+                            pointsToAddOrSubtract = 600;
+                            break;
+                        case R.id.buttonPoints4:
+                            pointsToAddOrSubtract = 800;
+                            break;
+                        case R.id.buttonPoints5:
+                            pointsToAddOrSubtract = 1000;
+                            break;
+                        default:
+                            break;
+                    }*/
 
                 DialogFragment pointsDialog = new PointsDialogFragment();
                 pointsDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
             }
         };
 
-        buttonPoints200.setOnClickListener(pointsListener);
-        buttonPoints400.setOnClickListener(pointsListener);
-        buttonPoints600.setOnClickListener(pointsListener);
-        buttonPoints800.setOnClickListener(pointsListener);
-        buttonPoints1000.setOnClickListener(pointsListener);
+        buttonPoints1.setOnClickListener(pointsListener);
+        buttonPoints2.setOnClickListener(pointsListener);
+        buttonPoints3.setOnClickListener(pointsListener);
+        buttonPoints4.setOnClickListener(pointsListener);
+        buttonPoints5.setOnClickListener(pointsListener);
+
 
     }
 

@@ -87,19 +87,19 @@ public class PointsFragment extends Fragment {
             public void onClick(View v) {
 
                 switch (v.getId()){
-                    case R.id.buttonPoints200:
+                    case R.id.buttonPoints1:
                         totalScore += 200;
                         break;
-                    case R.id.buttonPoints400:
+                    case R.id.buttonPoints2:
                         totalScore += 400;
                         break;
-                    case R.id.buttonPoints600:
+                    case R.id.buttonPoints3:
                         totalScore += 200;
                         break;
-                    case R.id.buttonPoints800:
+                    case R.id.buttonPoints4:
                         totalScore += 200;
                         break;
-                    case R.id.buttonPoints1000:
+                    case R.id.buttonPoints5:
                         totalScore += 200;
                         break;
                     default:
