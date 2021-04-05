@@ -39,6 +39,8 @@
 
     <string name="daily_double_wager_correct_or_not">Enter Daily Double Wager And If It Was Correct Or Not</string>
     <string name="wager">Wager</string>
+
+    <string name ="first_round_title">Round 1</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- string resources for the open and close toggle nav menu drawer-->
