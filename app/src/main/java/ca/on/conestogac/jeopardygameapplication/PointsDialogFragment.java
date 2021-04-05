@@ -1,6 +1,7 @@
 package ca.on.conestogac.jeopardygameapplication;
 
-import android.app.AlertDialog;
+
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 public class PointsDialogFragment extends DialogFragment {
@@ -29,7 +31,7 @@ public class PointsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogTheme);
         //Parse the xml of the view to create the view
         LayoutInflater inflator = getActivity().getLayoutInflater();
 

@@ -10,11 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity
-            android:name=".DailyDoubleDialog"
-            android:theme="@style/DialogTheme" />
+            android:name=".DailyDoubleDialog" />
         <activity
-            android:name=".PointsDialog"
-            android:theme="@style/DialogTheme"/>
+            android:name=".PointsDialog" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

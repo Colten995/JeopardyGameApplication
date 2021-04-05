@@ -14,8 +14,7 @@
         <TextView
             android:id="@+id/textViewPointsDialogTitle"
             style="@style/DialogTitleText"
-            android:text="@string/did_you_answer_correct"
-            android:textColor="@color/white" />
+            android:text="@string/did_you_answer_correct" />
 
         <LinearLayout
             android:layout_width="match_parent"
