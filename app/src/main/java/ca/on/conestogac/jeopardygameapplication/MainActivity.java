@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonDailyDouble;
     private Button buttonDoubleJeopardy;
     private TextView textViewScore;
+    private TextView textViewRoundTitle;
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -91,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 double_jeopardy = true;
+                changePointButtonsToDoubleJeopardy();
+                textViewRoundTitle.setText(R.string.double_jeopardy);
             }
         });
-
-        textViewScore = findViewById(R.id.textViewScore);
 
         View.OnClickListener pointsListener = new View.OnClickListener() {
             @Override
@@ -126,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 pointsDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
             }
         };
+
+        textViewScore = findViewById(R.id.textViewScore);
+        textViewRoundTitle = findViewById(R.id.textViewRoundTitle);
 
         buttonPoints1.setOnClickListener(pointsListener);
         buttonPoints2.setOnClickListener(pointsListener);
@@ -176,5 +180,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDailyDoubleDialogNoButtonClick(DialogFragment dialog, int wager) {
         score -= 2 * wager;
         textViewScore.setText(String.valueOf(score));
+    }
+
+    public void changePointButtonsToDoubleJeopardy()
+    {
+        buttonPoints1.setText(R.string.points_400);
+        buttonPoints2.setText(R.string.points_800);
+        buttonPoints3.setText(R.string.points_1200);
+        buttonPoints4.setText(R.string.points_1600);
+        buttonPoints5.setText(R.string.points_2000);
+    }
+    public void changePointButtonsToFirstRound()
+    {
+        buttonPoints1.setText(R.string.points_200);
+        buttonPoints2.setText(R.string.points_400);
+        buttonPoints3.setText(R.string.points_600);
+        buttonPoints4.setText(R.string.points_800);
+        buttonPoints5.setText(R.string.points_1000);
     }
 }
