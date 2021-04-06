@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,12 +30,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonDailyDouble;
     private Button buttonDoubleJeopardy;
     private Button buttonBackToFirstRound;
+    private Button buttonFinalJeopardy;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
 
     private int pointsToAddOrSubtract;
     private int score;
     private boolean isDoubleJeopardyRound = false;
+    private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
 
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
@@ -102,6 +105,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 goToFirstRound();
+            }
+        });
+
+        buttonFinalJeopardy = findViewById(R.id.buttonFinalRound);
+
+        buttonFinalJeopardy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent finalJeopardyIntent = new Intent(getApplicationContext(), FinalJeopardyActivity.class);
+                finalJeopardyIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
+                startActivity(finalJeopardyIntent);
             }
         });
 

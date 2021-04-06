@@ -144,6 +144,12 @@
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_round_buttons" />
 
+        <Button
+            android:id="@+id/buttonFinishGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_game" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
