@@ -36,7 +36,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonFinalJeopardy.setVisibility(View.GONE);
         buttonDoubleJeopardy.setVisibility(View.VISIBLE);
         buttonFirstRound.setVisibility(View.VISIBLE);
-
-
+        
     }
 }

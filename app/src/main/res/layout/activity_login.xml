@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/gradient"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imgJeopardy"
+        android:layout_width="149dp"
+        android:layout_height="130dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="422dp"
+        app:layout_constraintBottom_toTopOf="@+id/edEmail1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/jeopardy"
+        tools:ignore="NotSibling" />
+
+    <LinearLayout
+        android:layout_width="255dp"
+        android:layout_height="125dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="288dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="270dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edEmail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingTop="23dp"
+            android:drawableLeft="@drawable/ic_action_email"
+            android:inputType="textPersonName"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/edPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:drawableLeft="@drawable/ic_action_password"
+            android:paddingTop="23dp"
+            android:inputType="textPersonName"
+            android:text="@string/password" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="437dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="118dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login" />
+
+        <TextView
+            android:id="@+id/txtSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:paddingTop="23dp"
+            android:text="@string/register"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</RelativeLayout>
