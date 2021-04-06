@@ -159,6 +159,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints4.setOnClickListener(pointsListener);
         buttonPoints5.setOnClickListener(pointsListener);
 
+        if(isDoubleJeopardyRound)
+        {
+            goToDoubleJeopardyRound();
+        }
+
 
     }
 
