@@ -38,9 +38,13 @@
     <string name="no">No</string>
 
     <string name="daily_double_wager_correct_or_not">Enter Daily Double Wager And If It Was Correct Or Not</string>
-    <string name="wager">Wager</string>
+    <string name="wager">Wager:</string>
 
-    <string name ="first_round_title">First Round</string>
+    <string name="enter_final_jeopardy_wager">Enter final jeopardy wager below</string>
+    <string name="click_button_to_start_timer">Click this button to start the final jeopardy timer</string>
+    <string name="start_final_jeopardy_timer">Start Final Jeopardy Timer</string>
+
+    <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- string resources for the open and close toggle nav menu drawer-->

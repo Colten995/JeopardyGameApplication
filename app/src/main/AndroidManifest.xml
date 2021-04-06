@@ -9,10 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity
-            android:name=".DailyDoubleDialog" />
-        <activity
-            android:name=".PointsDialog" />
+        <activity android:name=".FinalJeopardyActivity"></activity>
+        <activity android:name=".DailyDoubleDialog" />
+        <activity android:name=".PointsDialog" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
