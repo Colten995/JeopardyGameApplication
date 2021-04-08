@@ -264,11 +264,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(wager > 0)
             {
                 //check if wager is greater than maximumWager or wager is greater than score
-                if (score == 0 && wager > maximumWager) {
+                /*if (score == 0 && wager > maximumWager) {
                     Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
                     isValidWager = false;
-                } else if (wager > score) {
-                    Snackbar.make(mainView, R.string.wager_too_high, Snackbar.LENGTH_LONG).show();
+                }
+                else if (wager > maximumWager) {
+                    Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
+                    isValidWager = false;
+                }*/
+                if (score == 0)
+                {
+                    if (wager > maximumWager)
+                    {
+                        Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
+                        isValidWager = false;
+                    }
+                }
+                else if (wager > maximumWager)
+                {
+                    Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
                     isValidWager = false;
                 }
             }
