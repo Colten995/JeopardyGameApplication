@@ -12,10 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import org.w3c.dom.Text;
+
 public class DailyDoubleDialogFragment extends DialogFragment {
     private Button buttonYes;
     private Button buttonNo;
     private TextView textViewWager;
+    private TextView textViewDialogScore;
+    private final String BUNDLE_SCORE_KEY = "Score";
 
     private int wager = 0;
 
@@ -40,9 +44,15 @@ public class DailyDoubleDialogFragment extends DialogFragment {
         //Need to create view so we can set the OnClick events for the buttons in the view
         View dialogView = inflator.inflate(R.layout.activity_daily_double_dialog, null);
 
+        Bundle dialogBundle = getArguments();
+
         textViewWager = dialogView.findViewById(R.id.editTextDailyDoubleWager);
         buttonYes = dialogView.findViewById(R.id.buttonYes);
         buttonNo = dialogView.findViewById(R.id.buttonNo);
+        textViewDialogScore = dialogView.findViewById(R.id.textViewDialogScore);
+
+        textViewDialogScore.setText(dialogBundle.getString(BUNDLE_SCORE_KEY));
+
         buttonYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

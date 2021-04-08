@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.snackbar.SnackbarContentLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
 
@@ -36,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonFinalJeopardy;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
+    private Bundle dailyDoubleDialogBundle = new Bundle();
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final int MAXIMUM_POINTS_FIRST_ROUND = 1000;
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
-    private final int MINIMUM_DAILY_DOUBLE_WAGER= 5;
+    private final String DAILY_DOUBLE_DIALOG_SCORE_KEY = "Score";
 
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
@@ -91,7 +91,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonDailyDouble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Put the score in the bundle to send to the dialog
+                dailyDoubleDialogBundle.putString(DAILY_DOUBLE_DIALOG_SCORE_KEY, String.valueOf(score));
+
                 DialogFragment dailyDoubleDialog = new DailyDoubleDialogFragment();
+                dailyDoubleDialog.setArguments(dailyDoubleDialogBundle);
                 dailyDoubleDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
             }
         });
