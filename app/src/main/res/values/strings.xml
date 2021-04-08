@@ -41,10 +41,17 @@
     <string name="wager">Wager:</string>
 
     <string name="enter_final_jeopardy_wager">Enter final jeopardy wager below</string>
+    <!-- TODO: Include a textView indicating the maximum wager-->
     <string name="click_button_to_start_timer">Click this button to start the final jeopardy timer</string>
     <string name="start_final_jeopardy_timer">Start Final Jeopardy Timer</string>
 
     <string name="finish_game">Finish Game</string>
+
+    <string name="wager_too_high">Please enter a daily double wager that is equal to, or less than your current score</string>
+    <string name="wager_greater_than_maximum_amount_allowed">Please enter a wager that is equal to, or less than: </string>
+    <string name="wager_not_positive">Wager must be a positive number</string>
+    <string name="please_enter_a_wager">Please enter a wager</string>
+    <string name="minimum_wager">Please enter a wager greater than the minimum amount: 5</string>
 
     <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->

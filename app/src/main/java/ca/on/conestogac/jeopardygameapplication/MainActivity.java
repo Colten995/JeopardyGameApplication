@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
 
 
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int score;
     private boolean isDoubleJeopardyRound = false;
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
+    private final int MAXIMUM_POINTS_FIRST_ROUND = 1000;
+    private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
+    private final int MINIMUM_DAILY_DOUBLE_WAGER= 5;
 
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
 
@@ -164,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             goToDoubleJeopardyRound();
         }
 
-
     }
 
     //by default a menu item is set to false because it has not been touched and so this method is if user selects an item from the menu, it will return true because an item has been selected
@@ -199,8 +204,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onDailyDoubleDialogYesButtonClick(DialogFragment dialog, int wager) {
-        score += 2 * wager;
-        textViewScore.setText(String.valueOf(score));
+
+        if(validateWager(wager))
+        {
+            score += 2 * wager;
+            textViewScore.setText(String.valueOf(score));
+        }
+
     }
 
     @Override
@@ -236,5 +246,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints5.setText(R.string.points_1000);
 
         textViewRoundTitle.setText(R.string.first_round_title);
+    }
+    public boolean validateWager(int wager)
+    {
+        int maximumWager = calculateDailyDoubleMaxWager();
+        boolean isValidWager = true;
+        View mainView = findViewById(R.id.mainLayout);
+
+        //Check if wager is entered
+        if(wager != 0)
+        {
+            //check if wager is negative
+            if(wager > 0)
+            {
+                //check if wager is greater than maximumWager or wager is greater than score
+                if (score == 0 && wager > maximumWager) {
+                    Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
+                    isValidWager = false;
+                } else if (wager > score) {
+                    Snackbar.make(mainView, R.string.wager_too_high, Snackbar.LENGTH_LONG).show();
+                    isValidWager = false;
+                }
+            }
+            else
+            {
+                Snackbar.make(mainView, R.string.wager_not_positive, Snackbar.LENGTH_LONG).show();
+                isValidWager = false;
+            }
+        }
+        else
+        {
+            Snackbar.make(mainView, R.string.please_enter_a_wager, Snackbar.LENGTH_LONG).show();
+            isValidWager = false;
+        }
+
+        return isValidWager;
+    }
+    public int calculateDailyDoubleMaxWager()
+    {
+        int maximumWager = 0;
+        if (isDoubleJeopardyRound) {
+            //assign maximum wager to 2000 if the score is less than 2000
+            maximumWager = (score < MAXIMUM_POINTS_DOUBLE_JEOPARDY) ? 2000 : score;
+        } else {
+            //assign maximum wager to 1000 if the score is less than 1000
+            maximumWager = (score < MAXIMUM_POINTS_FIRST_ROUND) ? 1000 : score;
+        }
+        return maximumWager;
     }
 }
