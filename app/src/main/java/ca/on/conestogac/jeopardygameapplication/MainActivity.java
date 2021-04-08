@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
 
@@ -35,17 +40,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonFinalJeopardy;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
+    private TextView textViewScoreLabel;
+
+    private Timer timerForScoreAnimation = null;
+    private Timer timerForScoreBlinking = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
 
     private int pointsToAddOrSubtract;
     private int score;
     private boolean isDoubleJeopardyRound = false;
+    private int scoreAnimationCounter = 0;
+
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final int MAXIMUM_POINTS_FIRST_ROUND = 1000;
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
     private final String DAILY_DOUBLE_DIALOG_SCORE_KEY = "Score";
-
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
+    private final int THREE_SEC_IN_MILLIS = 3000;
+    private final int HALF_SEC_IN_MILLIS = 500;
+    private final int QUARTER_SEC_IN_MILLIS = 250;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textViewScore = findViewById(R.id.textViewScore);
         textViewRoundTitle = findViewById(R.id.textViewRoundTitle);
+        textViewScoreLabel = findViewById(R.id.textViewScoreLabel);
 
         buttonPoints1.setOnClickListener(pointsListener);
         buttonPoints2.setOnClickListener(pointsListener);
@@ -197,12 +211,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onPointsDialogYesClick(DialogFragment dialog) {
         score += pointsToAddOrSubtract;
         textViewScore.setText(String.valueOf(score));
+        animateScore(true);
     }
 
     @Override
     public void onPointsDialogNoClick(DialogFragment dialog) {
         score -= pointsToAddOrSubtract;
         textViewScore.setText(String.valueOf(score));
+        animateScore(false);
     }
 
 
@@ -311,5 +327,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             maximumWager = (score < MAXIMUM_POINTS_FIRST_ROUND) ? 1000 : score;
         }
         return maximumWager;
+    }
+    public void animateScore(boolean isCorrect)
+    {
+        textViewScore.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
+        textViewScoreLabel.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
+
+        //Every half second animate the score text to make it blink
+        if(timerForScoreAnimation != null)
+        {
+            timerForScoreAnimation.cancel();
+        }
+        timerForScoreAnimation = new Timer(true);
+        timerForScoreAnimation.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(scoreAnimationCounter < 3)
+                {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            textViewScore.animate().alpha(0f).setDuration(250).setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    textViewScore.animate().alpha(1f).setDuration(250);
+                                }
+                            });
+                            textViewScoreLabel.animate().alpha(0f).setDuration(250).setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    textViewScoreLabel.animate().alpha(1f).setDuration(250);
+                                }
+                            });
+
+                        }
+                    });
+                    scoreAnimationCounter++;
+                }
+                else
+                {
+                    scoreAnimationCounter = 0;
+                    timerForScoreAnimation.cancel();
+                    timerForScoreAnimation = null;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            textViewScore.setTextColor(getColor(R.color.black));
+                            textViewScoreLabel.setTextColor(getColor(R.color.black));
+                        }
+                    });
+                }
+
+            }
+        }, 0, 750);
     }
 }
