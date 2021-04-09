@@ -75,18 +75,26 @@
                 android:layout_marginBottom="16dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewStartTimer"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/click_button_to_start_timer"
-                    android:textSize="24sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/buttonStartFinalJeopardyTimer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/start_final_jeopardy_timer" />
+                    <TextView
+                        android:id="@+id/textViewStartTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/click_button_to_start_timer"
+                        android:textSize="24sp" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/floatingActionButtonStartTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/ic_schedule_black_24dp" />
+                </LinearLayout>
 
             </LinearLayout>
 
