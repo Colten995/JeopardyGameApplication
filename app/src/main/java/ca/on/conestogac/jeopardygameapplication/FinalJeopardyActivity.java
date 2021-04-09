@@ -50,7 +50,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateFinalJeopardyWager())
                 {
-                    //TODO: Start final jeopardy timer service
+                    startService(new Intent(getApplicationContext(), FinalJeopardyTimerService.class));
                 }
                 else
                 {

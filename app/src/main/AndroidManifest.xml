@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/AppTheme"></activity>
+        <service
+            android:name=".FinalJeopardyTimerService"
+            android:enabled="true"
+            android:exported="false"></service>
+
         <activity
-            android:name=".LoginActivity">
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

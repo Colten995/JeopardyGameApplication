@@ -53,6 +53,10 @@
     <string name="please_enter_a_wager">Please enter a wager</string>
     <string name="minimum_wager">Please enter a wager greater than the minimum amount: 5</string>
 
+    <string name="final_jeopardy_timer_started">Final jeopardy timer started!</string>
+    <string name="ten_sec_left_final_jeopardy">10 seconds remaining to answer the final jeopardy clue!</string>
+    <string name="final_jeopardy_time_is_up">Final jeopardy time is up! Did you come up with the correct answer?</string>
+
     <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
