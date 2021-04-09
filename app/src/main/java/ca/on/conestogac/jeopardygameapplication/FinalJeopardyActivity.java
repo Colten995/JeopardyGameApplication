@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FinalJeopardyActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private Button buttonFirstRound;
     private Button buttonDoubleJeopardy;
     private Button buttonFinalJeopardy;
-    private Button buttonStartTimer;
+    private FloatingActionButton floatingActionButtonStartTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,13 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonFirstRound = findViewById(R.id.buttonFirstRound);
         buttonDoubleJeopardy = findViewById(R.id.buttonSecondRound);
         buttonFinalJeopardy = findViewById(R.id.buttonFinalRound);
-        buttonStartTimer = findViewById(R.id.buttonStartFinalJeopardyTimer);
+        floatingActionButtonStartTimer = findViewById(R.id.floatingActionButtonStartTimer);
 
         buttonFinalJeopardy.setVisibility(View.GONE);
         buttonDoubleJeopardy.setVisibility(View.VISIBLE);
         buttonFirstRound.setVisibility(View.VISIBLE);
 
-        buttonStartTimer.setOnClickListener(new View.OnClickListener() {
+        floatingActionButtonStartTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateFinalJeopardyWager())
