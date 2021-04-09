@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.sql.Time;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FinalJeopardyActivity extends AppCompatActivity {
 
@@ -23,25 +29,32 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private Button buttonFirstRound;
     private Button buttonDoubleJeopardy;
     private Button buttonFinalJeopardy;
+    private Button buttonYes;
+    private Button buttonNo;
     private FloatingActionButton floatingActionButtonStartTimer;
+    private LinearLayout linearLayoutWasAnswerCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_jeopardy);
+
         Intent finalJeopardyIntent = getIntent();
         score = finalJeopardyIntent.getIntExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, DEFAULT_SCORE);
 
         textViewScore = findViewById(R.id.textViewScore);
-
-        editTextFinalJeopardyWager = findViewById(R.id.editTextFinalJeopardyWager);
-        textViewScore.setText(String.valueOf(score));
-
+        buttonYes = findViewById(R.id.buttonYes);
+        buttonNo = findViewById(R.id.buttonNo);
         buttonFirstRound = findViewById(R.id.buttonFirstRound);
         buttonDoubleJeopardy = findViewById(R.id.buttonSecondRound);
         buttonFinalJeopardy = findViewById(R.id.buttonFinalRound);
         floatingActionButtonStartTimer = findViewById(R.id.floatingActionButtonStartTimer);
+        linearLayoutWasAnswerCorrect = findViewById(R.id.linearLayoutWasAnswerCorrect);
+        editTextFinalJeopardyWager = findViewById(R.id.editTextFinalJeopardyWager);
 
+        textViewScore.setText(String.valueOf(score));
+
+        linearLayoutWasAnswerCorrect.setVisibility(View.GONE);
         buttonFinalJeopardy.setVisibility(View.GONE);
         buttonDoubleJeopardy.setVisibility(View.VISIBLE);
         buttonFirstRound.setVisibility(View.VISIBLE);
@@ -52,6 +65,22 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                 if (validateFinalJeopardyWager())
                 {
                     startService(new Intent(getApplicationContext(), FinalJeopardyTimerService.class));
+
+                    Timer timerForFinalJeopardyActivity = new Timer(true);
+                    timerForFinalJeopardyActivity.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    linearLayoutWasAnswerCorrect.setVisibility(View.VISIBLE);
+                                }
+                            });
+
+                        }
+                    }, 30000);
+
+                    editTextFinalJeopardyWager.setEnabled(false);
                 }
                 else
                 {
@@ -59,6 +88,34 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                 }
             }
         });
+
+        View.OnClickListener buttonYesNoListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.buttonYes)
+                {
+                    addWagerToScore();
+                }
+                linearLayoutWasAnswerCorrect.setVisibility(View.GONE);
+                editTextFinalJeopardyWager.setEnabled(true);
+            }
+        };
+
+        buttonYes.setOnClickListener(buttonYesNoListener);
+        buttonNo.setOnClickListener(buttonYesNoListener);
+
+        View.OnClickListener buttonToFirstAndSecondRoundListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainActivityIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
+                startActivity(mainActivityIntent);
+            }
+
+        };
+
+        buttonDoubleJeopardy.setOnClickListener(buttonToFirstAndSecondRoundListener);
+        buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
         
     }
 
@@ -77,5 +134,12 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         }
 
         return isValidWager;
+    }
+
+    public void addWagerToScore()
+    {
+        int finalJeopardyWager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
+        score += finalJeopardyWager;
+        textViewScore.setText(String.valueOf(score));
     }
 }
