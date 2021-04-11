@@ -60,26 +60,17 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         floatingActionButtonStartTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateFinalJeopardyWager())
-                {
-                    startService(new Intent(getApplicationContext(), FinalJeopardyTimerService.class));
-                }
-                else
-                {
-                    Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
-                }
+                startService(new Intent(getApplicationContext(), FinalJeopardyTimerService.class));
             }
         });
 
         View.OnClickListener buttonYesNoListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getId() == R.id.buttonYes)
+                if (v.getId() == R.id.buttonYes && validateFinalJeopardyWager())
                 {
                     addWagerToScore();
                 }
-                linearLayoutWasAnswerCorrect.setVisibility(View.GONE);
-                editTextFinalJeopardyWager.setEnabled(true);
             }
         };
 
@@ -105,14 +96,19 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     public boolean validateFinalJeopardyWager()
     {
         boolean isValidWager;
-        int wager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
-        if(wager > score)
-        {
+        if (editTextFinalJeopardyWager.getText().toString().isEmpty()) {
+            Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.please_enter_a_wager), Snackbar.LENGTH_LONG).show();
             isValidWager = false;
         }
         else
         {
-            isValidWager = true;
+            int wager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
+            if (wager > score) {
+                Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
+                isValidWager = false;
+            } else {
+                isValidWager = true;
+            }
         }
 
         return isValidWager;
