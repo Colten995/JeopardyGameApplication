@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,9 +50,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int pointsToAddOrSubtract;
     private int score;
     private boolean isDoubleJeopardyRound = false;
+    private boolean resetGame = false;
     private int scoreAnimationCounter = 0;
 
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
+    private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
+    private final int DEFAULT_SCORE = 0;
     private final int MAXIMUM_POINTS_FIRST_ROUND = 1000;
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
     private final String DAILY_DOUBLE_DIALOG_SCORE_KEY = "Score";
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetGame();
+                doResetGame();
             }
         });
 
@@ -186,9 +188,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             goToDoubleJeopardyRound();
         }
 
+        //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
+        Intent finalJeopardyIntent = getIntent();
+        resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        if (resetGame)
+        {
+            doResetGame();
+        }
+        else
+        {
+            score = finalJeopardyIntent.getIntExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, DEFAULT_SCORE);
+            textViewScore.setText(String.valueOf(score));
+        }
+
+
     }
 
-    private void resetGame() {
+    private void doResetGame() {
         score = 0;
         isDoubleJeopardyRound = false;
         textViewScore.setText(String.valueOf(score));

@@ -6,26 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.sql.Time;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class FinalJeopardyActivity extends AppCompatActivity {
 
     private int score;
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
+    private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
     private final int DEFAULT_SCORE = 0;
 
     private TextView textViewScore;
@@ -45,6 +39,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
         Intent finalJeopardyIntent = getIntent();
         score = finalJeopardyIntent.getIntExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, DEFAULT_SCORE);
+
+        Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
 
         textViewScore = findViewById(R.id.textViewScore);
         buttonYes = findViewById(R.id.buttonYes);
@@ -86,7 +82,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         View.OnClickListener buttonToFirstAndSecondRoundListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
                 mainActivityIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
                 startActivity(mainActivityIntent);
             }
@@ -97,7 +92,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Use Application class to save the score and user name to the database
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                mainActivityIntent.putExtra(FINAL_JEOPARDY_RESET_GAME_KEY, true);
+                startActivity(mainActivityIntent);
             }
         });
 
