@@ -1,10 +1,13 @@
 package ca.on.conestogac.jeopardygameapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +61,11 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonDoubleJeopardy.setVisibility(View.VISIBLE);
         buttonFirstRound.setVisibility(View.VISIBLE);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         floatingActionButtonStartTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +106,23 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonDoubleJeopardy.setOnClickListener(buttonToFirstAndSecondRoundListener);
         buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
         
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean ret = true;
+
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+            default:
+                //if you didn't handle the behavior, like above, just return this
+                ret = super.onOptionsItemSelected(item);
+                break;
+        }
+        return ret;
     }
 
     //Validate the final jeopardy wager to make sure it isn't greater than the score
