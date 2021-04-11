@@ -39,6 +39,9 @@
 
     <string name="daily_double_wager_correct_or_not">Enter Daily Double Wager And If It Was Correct Or Not</string>
     <string name="wager">Wager</string>
+    <string name="enter_final_jeopardy_wager"></string>
+    <string name="click_button_to_start_timer"></string>
+    <string name="finish_game"></string>
 
     <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->

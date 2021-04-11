@@ -37,10 +37,10 @@ public class FinalJeopardyTimerService extends Service {
 
         counter = 0;
         final Timer timerForFinalJeopardy = new Timer(true);
-        final Toast finalJeopardyReminderToast = Toast.makeText(this, R.string.ten_sec_left_final_jeopardy, Toast.LENGTH_LONG);
-        final Toast finalJeopardyOverToast = Toast.makeText(this, R.string.final_jeopardy_time_is_up,Toast.LENGTH_LONG);
+       // final Toast finalJeopardyReminderToast = Toast.makeText(this, R.string.ten_sec_left_final_jeopardy, Toast.LENGTH_LONG);
+       // final Toast finalJeopardyOverToast = Toast.makeText(this, R.string.final_jeopardy_time_is_up,Toast.LENGTH_LONG);
 
-        Toast.makeText(this, R.string.final_jeopardy_timer_started, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(this, R.string.final_jeopardy_timer_started, Toast.LENGTH_LONG).show();
 
         timerForFinalJeopardy.schedule(new TimerTask() {
             @Override
@@ -48,12 +48,12 @@ public class FinalJeopardyTimerService extends Service {
 
                 if (counter == 2)
                 {
-                    finalJeopardyReminderToast.show();
+                   // finalJeopardyReminderToast.show();
                     //TODO: Replace the small icon here with the icon for the app
                     final Notification returnToFinalJeopardyNotif = new Notification.Builder(getApplicationContext())
                             .setSmallIcon(R.drawable.ic_schedule_black_24dp)
                             .setContentTitle(getString(R.string.final_jeopardy))
-                            .setContentText(getString(R.string.ten_sec_left_final_jeopardy))
+          //setContentText(getString(R.string.ten_sec_left_final_jeopardy))
                             .setAutoCancel(true)
                             .setContentIntent(pendingReturnToFinalJeopardyIntent)
                             .build();
@@ -62,7 +62,7 @@ public class FinalJeopardyTimerService extends Service {
                 }
                 else if(counter >= 3)
                 {
-                    finalJeopardyOverToast.show();
+               //     finalJeopardyOverToast.show();
                     timerForFinalJeopardy.cancel();
                     stopSelf();
                 }
