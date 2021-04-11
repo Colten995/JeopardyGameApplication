@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Timer timerForScoreAnimation = null;
     private Timer timerForScoreBlinking = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
+    private Intent newGameIntent = null;
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -57,9 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
     private final String DAILY_DOUBLE_DIALOG_SCORE_KEY = "Score";
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
-    private final int THREE_SEC_IN_MILLIS = 3000;
-    private final int HALF_SEC_IN_MILLIS = 500;
-    private final int QUARTER_SEC_IN_MILLIS = 250;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                score = 0;
-                textViewScore.setText(String.valueOf(score));
+                resetGame();
             }
         });
 
@@ -189,6 +186,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             goToDoubleJeopardyRound();
         }
 
+    }
+
+    private void resetGame() {
+        score = 0;
+        isDoubleJeopardyRound = false;
+        textViewScore.setText(String.valueOf(score));
     }
 
     //by default a menu item is set to false because it has not been touched and so this method is if user selects an item from the menu, it will return true because an item has been selected

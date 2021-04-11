@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,8 +32,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private Button buttonFinalJeopardy;
     private Button buttonYes;
     private Button buttonNo;
+    private Button buttonFinishGame;
     private FloatingActionButton floatingActionButtonStartTimer;
-    private LinearLayout linearLayoutWasAnswerCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonFirstRound = findViewById(R.id.buttonFirstRound);
         buttonDoubleJeopardy = findViewById(R.id.buttonSecondRound);
         buttonFinalJeopardy = findViewById(R.id.buttonFinalRound);
+        buttonFinishGame = findViewById(R.id.buttonFinishGame);
         floatingActionButtonStartTimer = findViewById(R.id.floatingActionButtonStartTimer);
-        linearLayoutWasAnswerCorrect = findViewById(R.id.linearLayoutWasAnswerCorrect);
         editTextFinalJeopardyWager = findViewById(R.id.editTextFinalJeopardyWager);
 
         textViewScore.setText(String.valueOf(score));
@@ -74,9 +75,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
             }
         };
 
-        buttonYes.setOnClickListener(buttonYesNoListener);
-        buttonNo.setOnClickListener(buttonYesNoListener);
-
         View.OnClickListener buttonToFirstAndSecondRoundListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +85,16 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
         };
 
+        buttonFinishGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Use Application class to save the score and user name to the database
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        buttonYes.setOnClickListener(buttonYesNoListener);
+        buttonNo.setOnClickListener(buttonYesNoListener);
         buttonDoubleJeopardy.setOnClickListener(buttonToFirstAndSecondRoundListener);
         buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
         
