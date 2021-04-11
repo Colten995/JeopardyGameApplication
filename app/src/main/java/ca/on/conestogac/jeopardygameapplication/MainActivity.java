@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewScoreLabel;
 
     private Timer timerForScoreAnimation = null;
-    private Timer timerForScoreBlinking = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
-    private Intent newGameIntent = null;
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -146,27 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                    pointsToAddOrSubtract = Integer.parseInt(((Button) v).getText().toString());
-
-                    /*switch (v.getId()) {
-                        case R.id.buttonPoints1:
-                            pointsToAddOrSubtract = 200;
-                            break;
-                        case R.id.buttonPoints2:
-                            pointsToAddOrSubtract = 400;
-                            break;
-                        case R.id.buttonPoints3:
-                            pointsToAddOrSubtract = 600;
-                            break;
-                        case R.id.buttonPoints4:
-                            pointsToAddOrSubtract = 800;
-                            break;
-                        case R.id.buttonPoints5:
-                            pointsToAddOrSubtract = 1000;
-                            break;
-                        default:
-                            break;
-                    }*/
+                pointsToAddOrSubtract = Integer.parseInt(((Button) v).getText().toString());
 
                 DialogFragment pointsDialog = new PointsDialogFragment();
                 pointsDialog.show(getSupportFragmentManager(), DIALOG_PARENT_VIEW_TAG);
@@ -202,6 +180,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
+    }
+
+    /*TODO: Make app retain state when resuming using shared prefs
+    TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void doResetGame() {
@@ -299,15 +290,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //check if wager is negative
             if(wager > 0)
             {
-                //check if wager is greater than maximumWager or wager is greater than score
-                /*if (score == 0 && wager > maximumWager) {
-                    Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
-                    isValidWager = false;
-                }
-                else if (wager > maximumWager) {
-                    Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
-                    isValidWager = false;
-                }*/
                 if (score == 0)
                 {
                     if (wager > maximumWager)
