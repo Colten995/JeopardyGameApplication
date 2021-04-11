@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PointsDialogFragment.PointsDialogListener, DailyDoubleDialogFragment.DailyDoubleDialogListener {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle toggle;
     private Button highscores;
     private Button settings;
+
 
     private Button buttonPoints1;
     private Button buttonPoints2;
@@ -31,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonBackToFirstRound;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
+
+    private EditText txtEmail, txtPassword;
+    private Button btnLogin;
+    private TextView txtRegister;
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         //add our toggle to the activity main drawer layout xml
-        drawerLayout.addDrawerListener(toggle);
+       drawerLayout.addDrawerListener(toggle);
         //sync the state of open or close to our toggle
         toggle.syncState();
         //we now enable our toggle
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highscores.setOnClickListener(this);
         settings = (Button) findViewById(R.id.btnSettings);
         settings.setOnClickListener(this);
+
         //then close the drawer menu once an item has been selected
         drawerLayout.closeDrawers();
 
@@ -66,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints3 = findViewById(R.id.buttonPoints3);
         buttonPoints4 = findViewById(R.id.buttonPoints4);
         buttonPoints5 = findViewById(R.id.buttonPoints5);
+
 
         buttonNewGame = findViewById(R.id.buttonNewGame);
 
@@ -104,6 +112,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 goToFirstRound();
             }
         });
+
+        //
+        txtRegister=findViewById(R.id.txtSignup);
+        //txtEmail=findViewById(R.id.edUserName);
+        txtPassword=findViewById(R.id.edPassword);
+        btnLogin=findViewById(R.id.btnLogin);
+
 
         View.OnClickListener pointsListener = new View.OnClickListener() {
             @Override

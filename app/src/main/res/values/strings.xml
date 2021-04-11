@@ -12,12 +12,12 @@
     <string name="scores">Score</string>
     <string name="settings">Settings</string>
     <string name="score">Score:</string>
-    <string name="email">Email</string>
+    <string name="username">UserName</string>
     <string name="password">PassWord</string>
     <string name="register">Are you new? Register</string>
     <string name="login">Login</string>
     <string name="welcome">Welcome to Jeopardy game, create an Account</string>
-    <string name="first_name">First Name</string>
+    <string name="email">Email</string>
     <string name="last_name">Last Name</string>
     <string name="email_registration">Email</string>
     <string name="password_registration">Password</string>
@@ -40,7 +40,7 @@
     <string name="daily_double_wager_correct_or_not">Enter Daily Double Wager And If It Was Correct Or Not</string>
     <string name="wager">Wager</string>
 
-    <string name ="first_round_title">First Round</string>
+    <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- string resources for the open and close toggle nav menu drawer-->

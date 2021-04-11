@@ -5,21 +5,21 @@
     android:layout_width="match_parent"
     android:background="@drawable/gradient"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".Login">
 
     <ImageView
         android:id="@+id/imgJeopardy"
-        android:layout_width="149dp"
-        android:layout_height="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="114dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="131dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="422dp"
-        app:layout_constraintBottom_toTopOf="@+id/edEmail1"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="396dp"
+        app:layout_constraintBottom_toTopOf="@+id/edUserName2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,68 +29,68 @@
         tools:ignore="NotSibling" />
 
     <LinearLayout
-        android:layout_width="255dp"
-        android:layout_height="125dp"
+        android:layout_width="wrap_content"
+        android:layout_height="135dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="288dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginBottom="270dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="217dp"
+
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="251dp"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edEmail1"
+            android:id="@+id/edUserName2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
-            android:paddingTop="23dp"
-            android:drawableLeft="@drawable/ic_action_email"
+            android:hint="@string/username"
             android:inputType="textPersonName"
-            android:text="@string/email" />
+            android:paddingTop="23dp"
+             />
 
         <EditText
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:drawableLeft="@drawable/ic_action_password"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:paddingTop="23dp"
-            android:inputType="textPersonName"
-            android:text="@string/password" />
+             />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325dp"
+        android:layout_height="110dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="437dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="118dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="122dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login" />
+            android:paddingTop="23dp"
+            android:text="@string/login"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:paddingTop="23dp"
             android:text="@string/register"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
 </RelativeLayout>
