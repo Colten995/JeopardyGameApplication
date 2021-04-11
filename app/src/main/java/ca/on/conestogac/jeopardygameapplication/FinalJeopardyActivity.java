@@ -53,8 +53,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         editTextFinalJeopardyWager = findViewById(R.id.editTextFinalJeopardyWager);
 
         textViewScore.setText(String.valueOf(score));
-
-        linearLayoutWasAnswerCorrect.setVisibility(View.GONE);
         buttonFinalJeopardy.setVisibility(View.GONE);
         buttonDoubleJeopardy.setVisibility(View.VISIBLE);
         buttonFirstRound.setVisibility(View.VISIBLE);
@@ -65,22 +63,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                 if (validateFinalJeopardyWager())
                 {
                     startService(new Intent(getApplicationContext(), FinalJeopardyTimerService.class));
-
-                    Timer timerForFinalJeopardyActivity = new Timer(true);
-                    timerForFinalJeopardyActivity.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    linearLayoutWasAnswerCorrect.setVisibility(View.VISIBLE);
-                                }
-                            });
-
-                        }
-                    }, 30000);
-
-                    editTextFinalJeopardyWager.setEnabled(false);
                 }
                 else
                 {
