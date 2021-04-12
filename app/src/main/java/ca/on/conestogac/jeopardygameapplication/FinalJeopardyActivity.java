@@ -94,7 +94,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
                 //TODO: Replace user id and username with the actual ones
                 //((JeopardyApplication)getApplication()).resetTableScores();
-                //((JeopardyApplication)getApplication()).addGame(score, 0, "Joe");
+                ((JeopardyApplication)getApplication()).addGame(score, 0, "Joe");
 
                 mainActivityIntent.putExtra(FINAL_JEOPARDY_RESET_GAME_KEY, true);
                 startActivity(mainActivityIntent);

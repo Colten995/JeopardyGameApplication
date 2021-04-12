@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class JeopardyApplication extends Application {
 
     private static final String DB_NAME = "db_scores";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 1;
 
     private SQLiteOpenHelper helper;
     @Override
@@ -28,7 +28,7 @@ public class JeopardyApplication extends Application {
             */
             @Override
             public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-                sqLiteDatabase.execSQL("DROP TABLE tbl_scores");
+                //no-op
             }
         };
 
@@ -39,7 +39,10 @@ public class JeopardyApplication extends Application {
     {
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        db.execSQL("INSERT INTO tbl_scores (user_id, username, score) VALUES(" + user_id + ", " + username + ", " + score + ")");
+        //***Strings need to be enclosed in single quotes***
+        String addGameStatement = "INSERT INTO tbl_scores (user_id, username, score) VALUES (" + user_id + ", '" + username + "', " + score + ")";
+
+        db.execSQL(addGameStatement);
     }
 
     public int getHighScores(){
