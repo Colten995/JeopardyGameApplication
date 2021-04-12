@@ -76,11 +76,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Instantiate drawer buttons and set onClickListeners.
         highscores = (Button) findViewById(R.id.btnHighscores);
-        highscores.setOnClickListener(this);
+        //highscores.setOnClickListener(this);
         settings = (Button) findViewById(R.id.btnSettings);
         settings.setOnClickListener(this);
         //then close the drawer menu once an item has been selected
         drawerLayout.closeDrawers();
+
+        highscores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HighScoreActivity.class));
+            }
+        });
 
         buttonPoints1 = findViewById(R.id.buttonPoints1);
         buttonPoints2 = findViewById(R.id.buttonPoints2);

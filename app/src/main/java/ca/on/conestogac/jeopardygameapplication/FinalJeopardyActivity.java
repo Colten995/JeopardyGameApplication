@@ -91,7 +91,10 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonFinishGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Use Application class to save the score and user name to the database
+
+                //TODO: Replace user id and username with the actual ones
+                //((JeopardyApplication)getApplication()).addGame(score, 0, "Joe");
+
                 mainActivityIntent.putExtra(FINAL_JEOPARDY_RESET_GAME_KEY, true);
                 startActivity(mainActivityIntent);
             }
