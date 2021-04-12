@@ -23,6 +23,12 @@
         <activity android:name=".UserRegister" />
         <activity android:name=".DailyDoubleDialog" />
         <activity android:name=".PointsDialog" />
+        <activity android:name=".FinalJeopardyActivity"
+            android:theme="@style/AppTheme"/>
+        <service
+            android:name=".FinalJeopardyTimerService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>

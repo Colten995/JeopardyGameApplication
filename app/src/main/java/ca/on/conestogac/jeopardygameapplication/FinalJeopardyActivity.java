@@ -128,16 +128,14 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     {
         boolean isValidWager;
         if (editTextFinalJeopardyWager.getText().toString().isEmpty()) {
-            // getting some errors over here
-         //  Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.please_enter_a_wager), Snackbar.LENGTH_LONG).show();
+           Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.please_enter_a_wager), Snackbar.LENGTH_LONG).show();
            isValidWager = false;
         }
         else
         {
             int wager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
             if (wager > score) {
-                // getting some errors over here
-               // Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
                 isValidWager = false;
             } else {
                 isValidWager = true;

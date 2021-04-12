@@ -36,7 +36,8 @@ public class Login extends AppCompatActivity  implements View.OnClickListener{
     }
     // onClick event
     public void onClick(View v) {
-        switch (v.getId()) {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        /*switch (v.getId()) {
             case R.id.btnLogin:
                 SetValidation();
                 break;
@@ -46,7 +47,7 @@ public class Login extends AppCompatActivity  implements View.OnClickListener{
                 break;
             default:
                 break;
-        }
+        }*/
     }
     //Username and Password Validation
     public void SetValidation() {

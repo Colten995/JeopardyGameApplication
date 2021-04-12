@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isDoubleJeopardyRound = false;
     private boolean resetGame = false;
     private int scoreAnimationCounter = 0;
-    private String "string";
 
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
