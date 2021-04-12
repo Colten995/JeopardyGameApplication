@@ -1,6 +1,7 @@
 package ca.on.conestogac.jeopardygameapplication;
 
 import android.app.Application;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -33,7 +34,7 @@ public class JeopardyApplication extends Application {
         super.onCreate();
     }
 
-    public void addTransaction( int score, int user_id, String username)
+    public void addGame(int score, int user_id, String username)
     {
         SQLiteDatabase db = helper.getWritableDatabase();
 
@@ -41,6 +42,19 @@ public class JeopardyApplication extends Application {
                 + "VALUES(" + user_id + ", " + username + ", " + score +")");
     }
 
+    public int getHighScores(){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        //Lets us write the query out in SQL instead of trying to use other built-in functions to try and execute the SQL such as query(), or insert()
+        Cursor cursor = db.rawQuery("SELECT user_id, username, MAX(score) FROM tbl_scores GROUP BY user_id", null);
+        int ret;
+
+        cursor.moveToFirst();
+        ret = cursor.getInt(2);
+        //Very important!!
+        cursor.close();
+
+        return ret;
+    }
     public void resetTableStats()
     {
         SQLiteDatabase db = helper.getWritableDatabase();

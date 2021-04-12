@@ -122,18 +122,22 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     }
 
     //Validate the final jeopardy wager to make sure it isn't greater than the score
+
+
     public boolean validateFinalJeopardyWager()
     {
         boolean isValidWager;
         if (editTextFinalJeopardyWager.getText().toString().isEmpty()) {
-            Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.please_enter_a_wager), Snackbar.LENGTH_LONG).show();
-            isValidWager = false;
+            // getting some errors over here
+         //  Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.please_enter_a_wager), Snackbar.LENGTH_LONG).show();
+           isValidWager = false;
         }
         else
         {
             int wager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
             if (wager > score) {
-                Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
+                // getting some errors over here
+               // Snackbar.make(findViewById(R.id.mainFinalJeopardyLayout), getString(R.string.wager_greater_than_maximum_amount_allowed) + score, Snackbar.LENGTH_LONG).show();
                 isValidWager = false;
             } else {
                 isValidWager = true;
