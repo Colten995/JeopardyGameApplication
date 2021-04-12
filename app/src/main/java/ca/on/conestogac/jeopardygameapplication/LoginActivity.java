@@ -20,7 +20,6 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     View view;
     boolean isPassword, isUsername;
     private int counter=8;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -36,8 +35,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     }
     // onClick event
     public void onClick(View v) {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        /*switch (v.getId()) {
+        switch (v.getId()) {
             case R.id.btnLogin:
                 SetValidation();
                 break;
@@ -47,7 +45,10 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
                 break;
             default:
                 break;
-        }*/
+        }
+        SetValidation();
+
+
     }
     //Username and Password Validation
     public void SetValidation() {
@@ -92,6 +93,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         }
 
     }
+
 
 
 }

@@ -25,7 +25,8 @@
     <string name="register_">register</string>
     <string name="login_">Have you an account? Log in</string>
     <string name="username">Username</string>
-
+    <string name="name">Name</string>
+    <string name="back">Back</string>
 
     <string name="back_to_first_round">Back To First Round</string>
     <string name="double_jeopardy">Double Jeopardy</string>

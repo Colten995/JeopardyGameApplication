@@ -17,7 +17,8 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
      private Button btnRegister;
      private TextView txtLogin;
      private EditText edPassword, edRePassword, edUsername;
-      Boolean isPassword, isUsername, isPassword1;
+     Boolean isPassword, isUsername, isPassword1;
+     UserDatabaseHelper userDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,18 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
                 break;
+        }
+    }
+    private void SaveUserName(String name, String password){
+        userDatabaseHelper = new UserDatabaseHelper(this);
+        int dummyId = 0;
+        UserAccount userAccount = new UserAccount(dummyId, name, password);
+        boolean buf = userDatabaseHelper.AddUser(userAccount);
+        if (buf) {
+            Toast.makeText(this, "User added successfully!", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Something went wrong. User was not inserted.", Toast.LENGTH_LONG).show();
         }
     }
     /* private  void validate(String username, String password){
@@ -112,6 +125,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
        // check if all fields have inputs
         if(isPassword&&isUsername&& isPassword1){
             Toast.makeText(getApplicationContext()," Register successfully, enjoy your game", Toast.LENGTH_SHORT).show();
+            SaveUserName(edUsername.getText().toString(), edPassword.getText().toString());
         }
     }
 

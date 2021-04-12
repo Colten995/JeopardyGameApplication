@@ -220,6 +220,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.equals(highscores)){
+            Intent intent = new Intent(this, HighScoreActivity.class);
+            startActivity(intent);
         }
         else if(v.equals(settings)){
         }
