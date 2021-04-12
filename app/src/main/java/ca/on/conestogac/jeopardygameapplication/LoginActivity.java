@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Login extends AppCompatActivity  implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity  implements View.OnClickListener{
     private EditText txtUserName, txtPassword;
     private Button btnLogin;
     private TextView txtRegister;

@@ -42,7 +42,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.txtLogin:
                 // redirect to login activity
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             default:
                 break;
