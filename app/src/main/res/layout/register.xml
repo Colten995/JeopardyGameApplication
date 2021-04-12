@@ -76,9 +76,12 @@
 
         <Button
             android:id="@+id/btnRegister"
+            style="@style/ButtonWith3DText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_" />
+            android:backgroundTint="@color/bordeau"
+            android:text="@string/register_"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtLogin"

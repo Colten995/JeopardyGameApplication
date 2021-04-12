@@ -13,4 +13,6 @@
     <color name="jeopardy_blue">#060CE9</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
+    <color name="bordeau">#990000</color>
+    <color name="brown">#996600</color>
 </resources>

@@ -17,6 +17,7 @@
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- <item name="android:background">TODO: Icon for splash screen </item> -->
+        <item name="android:background">@drawable/ic_splashscreen</item>
         <item name="android:windowBackground">@color/jeopardy_blue</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
@@ -43,5 +44,13 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="ButtonWith3DText" parent="@style/Widget.AppCompat.Button">
+        <item name="android:shadowColor">#80000000</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowDy">8</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:textAllCaps">true</item>
+
     </style>
 </resources>

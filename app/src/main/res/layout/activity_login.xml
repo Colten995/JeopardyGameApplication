@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/gradient"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".Login">
 
     <ImageView
@@ -47,21 +47,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
+            android:drawableLeft="@drawable/ic_action_email"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
-            android:paddingTop="23dp"
-             />
+            android:paddingTop="23dp" />
 
         <EditText
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_action_password"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:paddingTop="23dp"
-             />
+            android:paddingTop="23dp" />
 
     </LinearLayout>
 
@@ -78,11 +78,13 @@
 
         <Button
             android:id="@+id/btnLogin"
+            style="@style/ButtonWith3DText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/bordeau"
             android:paddingTop="23dp"
             android:text="@string/login"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtSignup"
