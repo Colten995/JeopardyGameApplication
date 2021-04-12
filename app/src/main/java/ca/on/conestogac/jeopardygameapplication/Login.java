@@ -18,6 +18,8 @@ public class Login extends AppCompatActivity  implements View.OnClickListener{
     private Button btnLogin;
     private TextView txtRegister;
     View view;
+    boolean isPassword, isUsername;
+    private int counter=8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +34,11 @@ public class Login extends AppCompatActivity  implements View.OnClickListener{
         btnLogin.setOnClickListener(this);
         txtRegister.setOnClickListener(this);
     }
+    // onClick event
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-
-
-
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
+                SetValidation();
                 break;
             case R.id.txtSignup:
                 startActivity(new Intent(getApplicationContext(), UserRegister.class));
@@ -49,5 +48,49 @@ public class Login extends AppCompatActivity  implements View.OnClickListener{
                 break;
         }
     }
+    //Username and Password Validation
+    public void SetValidation() {
+        // check for a valid username
+        if (txtUserName.getText().toString().isEmpty()) {
+            txtUserName.setError("enter your username");
+
+            Toast.makeText(getApplicationContext(), "Enter your Username", Toast.LENGTH_SHORT).show();
+            isUsername = false;
+            NumberOfAttempts();
+        } else{
+            isUsername=true;
+
+
+        }
+        // check for valid password
+
+        if (txtPassword.getText().toString().isEmpty()&& txtPassword.getText().length()<6){
+            txtPassword.setError("Enter your Password");
+            Toast.makeText(getApplicationContext(), "Enter your password", Toast.LENGTH_SHORT).show();
+            isPassword=false;
+            NumberOfAttempts();
+        }else {
+            isPassword=true;
+        }
+
+        if (isPassword&& isUsername){
+            Toast.makeText(getApplicationContext(), " Login Successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+    }
+
+    // number of attempts
+    public void NumberOfAttempts(){
+        counter--;
+
+        Toast.makeText(getApplicationContext(), "Number of attempts remaining: " + String.valueOf(counter),
+                Toast.LENGTH_SHORT).show();
+        if (counter == 0) {
+
+            btnLogin.setEnabled(false);
+        }
+
+    }
+
 
 }

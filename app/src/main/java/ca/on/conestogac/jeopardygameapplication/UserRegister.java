@@ -111,7 +111,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
 
        // check if all fields have inputs
         if(isPassword&&isUsername&& isPassword1){
-            Toast.makeText(getApplicationContext(),"successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext()," Register successfully, enjoy your game", Toast.LENGTH_SHORT).show();
         }
     }
 
