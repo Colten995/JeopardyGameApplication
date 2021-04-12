@@ -4,11 +4,12 @@ import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class JeopardyApplication extends Application {
 
     private static final String DB_NAME = "db_scores";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private SQLiteOpenHelper helper;
     @Override
@@ -18,7 +19,7 @@ public class JeopardyApplication extends Application {
             @Override
             public void onCreate(SQLiteDatabase sqLiteDatabase) {
                 sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_scores(" +
-                        "user_id INT, username TEXT, score INT)");
+                        "user_id INTEGER, username TEXT, score INTEGER)");
             }
 
             /*
@@ -27,7 +28,7 @@ public class JeopardyApplication extends Application {
             */
             @Override
             public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-                // No-op
+                sqLiteDatabase.execSQL("DROP TABLE tbl_scores");
             }
         };
 
@@ -38,24 +39,25 @@ public class JeopardyApplication extends Application {
     {
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        db.execSQL("INSERT INTO tbl_scores (user_id, username, score) "
-                + "VALUES(" + user_id + ", " + username + ", " + score +")");
+        db.execSQL("INSERT INTO tbl_scores (user_id, username, score) VALUES(" + user_id + ", " + username + ", " + score + ")");
     }
 
     public int getHighScores(){
         SQLiteDatabase db = helper.getReadableDatabase();
         //Lets us write the query out in SQL instead of trying to use other built-in functions to try and execute the SQL such as query(), or insert()
-        Cursor cursor = db.rawQuery("SELECT user_id, username, MAX(score) FROM tbl_scores GROUP BY user_id", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM tbl_scores", null);
+       // SELECT user_id, username, MAX(score) FROM tbl_scores GROUP BY user_id
         int ret;
 
         cursor.moveToFirst();
+        //TODO get all scores and return an array of ints
         ret = cursor.getInt(2);
         //Very important!!
         cursor.close();
 
         return ret;
     }
-    public void resetTableStats()
+    public void resetTableScores()
     {
         SQLiteDatabase db = helper.getWritableDatabase();
 
