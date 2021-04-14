@@ -11,6 +11,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TableLayout
+            android:id="@+id/tableLayoutHighScores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,10 +38,11 @@
                     android:id="@+id/txtNameLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:gravity="center_horizontal"
                     android:text="@string/name"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/txtScoreLabel"
@@ -45,7 +51,8 @@
                     android:gravity="center_horizontal"
                     android:text="@string/scores"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="visible" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
