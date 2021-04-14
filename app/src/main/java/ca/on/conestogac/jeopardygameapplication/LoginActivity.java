@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
         if (isPassword&& isUsername){
             Toast.makeText(getApplicationContext(), " Login Successfully", Toast.LENGTH_SHORT).show();
+            //TODO: Get user_id and name and save it to shared preferences
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }

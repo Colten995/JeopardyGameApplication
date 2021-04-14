@@ -1,10 +1,13 @@
 package ca.on.conestogac.jeopardygameapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +16,7 @@ import android.widget.Toast;
 public class HighScoreActivity extends AppCompatActivity {
 
     TextView textViewHighScores;
-    Button back;
+    //Button back;
     ScoreDatabaseHelper scoreDatabaseHelper;
     TextView name;
     TextView score;
@@ -22,19 +25,40 @@ public class HighScoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
-        back = findViewById(R.id.btnBack);
+        //back = findViewById(R.id.btnBack);
         name = findViewById(R.id.txtName);
         score = findViewById(R.id.txtScore);
-        back.setOnClickListener(new View.OnClickListener() {
+        /*back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
-        });
+        });*/
         scoreDatabaseHelper = new ScoreDatabaseHelper(this);
 //        ShowScores();
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean ret = true;
+
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+            default:
+                //if you didn't handle the behavior, like above, just return this
+                ret = super.onOptionsItemSelected(item);
+                break;
+        }
+        return ret;
+    }
 
     private void ShowScores() {
         Cursor cursor = scoreDatabaseHelper.GetScore();

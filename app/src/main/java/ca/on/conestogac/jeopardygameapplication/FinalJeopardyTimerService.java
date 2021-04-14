@@ -49,7 +49,6 @@ public class FinalJeopardyTimerService extends Service {
                 if (counter == 2)
                 {
                     finalJeopardyReminderToast.show();
-                    //TODO: Replace the small icon here with the icon for the app
                     final Notification returnToFinalJeopardyNotif = new Notification.Builder(getApplicationContext())
                             .setSmallIcon(R.drawable.ic_schedule_black_24dp)
                             .setContentTitle(getString(R.string.final_jeopardy))
