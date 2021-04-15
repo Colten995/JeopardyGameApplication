@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             goToDoubleJeopardyRound();
         }
+        //TODO: Re-populate current user
     }
 
     private void doResetGame() {

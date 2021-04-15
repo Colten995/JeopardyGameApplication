@@ -5,7 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private int score;
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
+    private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
     private final int DEFAULT_SCORE = 0;
 
     private TextView textViewScore;
@@ -31,6 +35,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private Button buttonNo;
     private Button buttonFinishGame;
     private FloatingActionButton floatingActionButtonStartTimer;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +110,28 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonNo.setOnClickListener(buttonYesNoListener);
         buttonDoubleJeopardy.setOnClickListener(buttonToFirstAndSecondRoundListener);
         buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         
+    }
+
+    @Override
+    protected void onPause() {
+        Editor ed = sharedPref.edit();
+
+        ed.putInt(SHARED_PREF_KEY_SCORE, score);
+        ed.commit();
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+        textViewScore.setText(String.valueOf(score));
+
     }
 
     @Override
