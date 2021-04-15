@@ -5,11 +5,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Timer timerForScoreAnimation = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
+    private SharedPreferences sharedPref;
 
     private int pointsToAddOrSubtract;
     private int score;
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
     private final String DAILY_DOUBLE_DIALOG_SCORE_KEY = "Score";
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
+    private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
+    private final String SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY = "isDoubleJeopardy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +192,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textViewScore.setText(String.valueOf(score));
         }
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
 
     }
 
@@ -194,12 +202,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     protected void onPause() {
+        Editor ed = sharedPref.edit();
+
+        ed.putInt(SHARED_PREF_KEY_SCORE, score);
+        ed.putBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, isDoubleJeopardyRound);
+        ed.commit();
+
         super.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+        isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
+
+        textViewScore.setText(String.valueOf(score));
+        if(isDoubleJeopardyRound)
+        {
+            goToDoubleJeopardyRound();
+        }
     }
 
     private void doResetGame() {

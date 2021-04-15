@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
-            android:drawableLeft="@drawable/ic_action_email"
+
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
@@ -64,7 +64,7 @@
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_password"
+
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"

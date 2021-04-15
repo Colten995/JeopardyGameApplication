@@ -68,7 +68,7 @@ public class HighScoreActivity extends AppCompatActivity {
             }
         });
 
-        //refreshHighScores();
+        refreshHighScores();
     }
 
     @Override

@@ -29,6 +29,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textViewRoundTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_round_title"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
                     <fragment
                         android:id="@+id/fragment5"
                         android:name="ca.on.conestogac.jeopardygameapplication.NewGameFragment"
