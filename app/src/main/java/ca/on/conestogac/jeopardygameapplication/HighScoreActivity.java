@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,18 +16,22 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 
 import org.w3c.dom.Text;
 
 public class HighScoreActivity extends AppCompatActivity {
 
-    TextView textViewHighScores;
+    private TextView textViewHighScores;
     //Button back;
     ScoreDatabaseHelper scoreDatabaseHelper;
     TextView name;
     TextView score;
+    private Button buttonResetAllScores;
 
-    TableLayout highScoreTableLayout;
+    private TableLayout highScoreTableLayout;
+    private LinearLayout linearLayoutHighScores;
+    private TextView textViewNoHighScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +49,25 @@ public class HighScoreActivity extends AppCompatActivity {
         scoreDatabaseHelper = new ScoreDatabaseHelper(this);
 //        ShowScores();*/
 
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        buttonResetAllScores = findViewById(R.id.buttonResetScores);
         highScoreTableLayout = findViewById(R.id.tableLayoutHighScores);
+        linearLayoutHighScores = findViewById(R.id.linearLayoutHighScores);
+        textViewNoHighScores = findViewById(R.id.textViewNoHighScores);
+
+        buttonResetAllScores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((JeopardyApplication)getApplication()).resetTableScores();
+                refreshHighScores();
+            }
+        });
+
         refreshHighScores();
     }
 
@@ -101,9 +119,9 @@ public class HighScoreActivity extends AppCompatActivity {
 
         TextView textViewUsername = new TextView(this);
         TextView textViewScore = new TextView(this);
-        LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+        TableRow.LayoutParams textViewParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
                 1.0f
         );
         /*TableRow.LayoutParams rowParams = new TableRow.LayoutParams(
@@ -114,16 +132,25 @@ public class HighScoreActivity extends AppCompatActivity {
         textViewScore.setLayoutParams(textViewParams);
 
         highScoreCursor.moveToFirst();
-        for(int i = 0; i < numberOfTableRows; i++)
+        //If there are no scores simply add an empty row
+        if (highScoreCursor.getCount() == 0)
         {
-            TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableRow.LayoutParams());
-            textViewUsername.setText(highScoreCursor.getString(1));
-            textViewScore.setText(String.valueOf(highScoreCursor.getInt(2)));
-            tableRow.addView(textViewUsername);
-            tableRow.addView(textViewScore);
-            highScoreTableLayout.addView(tableRow);
-            highScoreCursor.moveToNext();
+            highScoreTableLayout.setVisibility(View.GONE);
+            textViewNoHighScores.setVisibility(View.VISIBLE);
+        }
+        else {
+            textViewNoHighScores.setVisibility(View.GONE);
+            for (int i = 0; i < numberOfTableRows; i++) {
+                TableRow tableRow = new TableRow(this);
+                tableRow.setLayoutParams(new TableRow.LayoutParams());
+                textViewUsername.setText(highScoreCursor.getString(1));
+                textViewScore.setText(String.valueOf(highScoreCursor.getInt(2)));
+                tableRow.addView(textViewUsername);
+                tableRow.addView(textViewScore);
+                tableRow.setBackgroundColor(getColor(R.color.light_grey));
+                highScoreTableLayout.addView(tableRow);
+                highScoreCursor.moveToNext();
+            }
         }
 
         highScoreCursor.close();

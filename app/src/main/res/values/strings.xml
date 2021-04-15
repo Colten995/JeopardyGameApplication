@@ -59,6 +59,9 @@
     <string name="ten_sec_left_final_jeopardy">10 seconds remaining to answer the final jeopardy clue!</string>
     <string name="final_jeopardy_time_is_up">Final jeopardy time is up! Did you come up with the correct answer?</string>
     <string name="wager_must_be_equal_to_or_less_than_score">Final Jeopardy wager must be equal to or less than the current score</string>
+    <string name="high_score_title">High Scores</string>
+    <string name="reset_all_scores">Reset All Scores</string>
+    <string name="no_scores">No Scores Available</string>
 
     <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->

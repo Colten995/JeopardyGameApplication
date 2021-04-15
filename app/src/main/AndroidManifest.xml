@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity android:name=".HighScoreActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"
+            android:label="@string/high_score_title"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
