@@ -303,6 +303,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             score += 2 * wager;
             textViewScore.setText(String.valueOf(score));
+            animateScore(true);
         }
 
     }
@@ -311,6 +312,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDailyDoubleDialogNoButtonClick(DialogFragment dialog, int wager) {
         score -= 2 * wager;
         textViewScore.setText(String.valueOf(score));
+        animateScore(false);
     }
 
     public void goToDoubleJeopardyRound()
