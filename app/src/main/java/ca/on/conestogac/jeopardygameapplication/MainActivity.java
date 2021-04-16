@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
 
+
     }
 
     /*TODO: Make app retain state when resuming using shared prefs
