@@ -19,6 +19,13 @@
             android:layout_marginRight="8dp"
             android:orientation="vertical">
 
+            <fragment
+                android:id="@+id/fragment13"
+                android:name="ca.on.conestogac.jeopardygameapplication.CurrentUserFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_current_user" />
+
             <TextView
                 android:id="@+id/textViewFinalJeopardyTitle"
                 android:layout_width="match_parent"

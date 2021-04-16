@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewScore;
     private TextView textViewRoundTitle;
     private TextView textViewScoreLabel;
+    private TextView textViewCurrentUser;
 
     private Timer timerForScoreAnimation = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isDoubleJeopardyRound = false;
     private boolean resetGame = false;
     private int scoreAnimationCounter = 0;
+    private String username;
+    private int user_id;
 
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //instantiate our drawer layout ui reference and make a new toggle button for our navigation drawer menu
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -101,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints3 = findViewById(R.id.buttonPoints3);
         buttonPoints4 = findViewById(R.id.buttonPoints4);
         buttonPoints5 = findViewById(R.id.buttonPoints5);
+
         logOut = findViewById(R.id.btnLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
+
         buttonNewGame = findViewById(R.id.buttonNewGame);
 
         buttonNewGame.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewScore = findViewById(R.id.textViewScore);
         textViewRoundTitle = findViewById(R.id.textViewRoundTitle);
         textViewScoreLabel = findViewById(R.id.textViewScoreLabel);
+        textViewCurrentUser = findViewById(R.id.textViewCurrentUser);
 
         buttonPoints1.setOnClickListener(pointsListener);
         buttonPoints2.setOnClickListener(pointsListener);
@@ -200,13 +207,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
+
+        textViewCurrentUser.setText(username);
 
 
     }
 
-    /*TODO: Make app retain state when resuming using shared prefs
-    TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
-     */
+
+    //TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
+
     @Override
     protected void onPause() {
         Editor ed = sharedPref.edit();
@@ -221,15 +232,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
-        isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
 
-        textViewScore.setText(String.valueOf(score));
-        if(isDoubleJeopardyRound)
+        //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
+        Intent finalJeopardyIntent = getIntent();
+        resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        if (resetGame)
         {
-            goToDoubleJeopardyRound();
+            doResetGame();
         }
-        //TODO: Re-populate current user
+        else
+        {
+            score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+            isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
+            username = sharedPref.getString("userName", "");
+            user_id = sharedPref.getInt("userId", 0);
+
+            textViewScore.setText(String.valueOf(score));
+            textViewCurrentUser.setText(username);
+            if(isDoubleJeopardyRound)
+            {
+                goToDoubleJeopardyRound();
+            }
+        }
     }
 
     private void doResetGame() {
@@ -279,6 +303,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             score += 2 * wager;
             textViewScore.setText(String.valueOf(score));
+            animateScore(true);
         }
 
     }
@@ -287,6 +312,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDailyDoubleDialogNoButtonClick(DialogFragment dialog, int wager) {
         score -= 2 * wager;
         textViewScore.setText(String.valueOf(score));
+        animateScore(false);
     }
 
     public void goToDoubleJeopardyRound()

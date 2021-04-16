@@ -36,6 +36,9 @@ public class HighScoreActivity extends AppCompatActivity {
     private TextView textViewNoHighScores;
     private SharedPreferences sharedPref;
 
+    private String username;
+    private int user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +65,10 @@ public class HighScoreActivity extends AppCompatActivity {
         highScoreTableLayout = findViewById(R.id.tableLayoutHighScores);
         linearLayoutHighScores = findViewById(R.id.linearLayoutHighScores);
         textViewNoHighScores = findViewById(R.id.textViewNoHighScores);
-        name = findViewById(R.id.textViewUsernameLabel);
+       // name = findViewById(R.id.textViewUsernameLabel);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String userName = sharedPref.getString("userName", "Username");
-        name.setText(userName);
+       // name.setText(userName);
         buttonResetAllScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +77,7 @@ public class HighScoreActivity extends AppCompatActivity {
             }
         });
 
-        //refreshHighScores();
+        refreshHighScores();
     }
 
     @Override
@@ -122,20 +125,6 @@ public class HighScoreActivity extends AppCompatActivity {
         Cursor highScoreCursor = ((JeopardyApplication)getApplication()).getHighScores();
         int numberOfTableRows = highScoreCursor.getCount();
 
-        TextView textViewUsername = new TextView(this);
-        TextView textViewScore = new TextView(this);
-        TableRow.LayoutParams textViewParams = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                1.0f
-        );
-        /*TableRow.LayoutParams rowParams = new TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT
-        );*/
-        textViewUsername.setLayoutParams(textViewParams);
-        textViewScore.setLayoutParams(textViewParams);
-
         highScoreCursor.moveToFirst();
         //If there are no scores simply add an empty row
         if (highScoreCursor.getCount() == 0)
@@ -146,6 +135,15 @@ public class HighScoreActivity extends AppCompatActivity {
         else {
             textViewNoHighScores.setVisibility(View.GONE);
             for (int i = 0; i < numberOfTableRows; i++) {
+                TextView textViewUsername = new TextView(this);
+                TextView textViewScore = new TextView(this);
+                TableRow.LayoutParams textViewParams = new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.0f
+                );
+                textViewUsername.setLayoutParams(textViewParams);
+                textViewScore.setLayoutParams(textViewParams);
                 TableRow tableRow = new TableRow(this);
                 tableRow.setLayoutParams(new TableRow.LayoutParams());
                 textViewUsername.setText(highScoreCursor.getString(1));

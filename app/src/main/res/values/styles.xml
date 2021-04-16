@@ -16,7 +16,6 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- <item name="android:background">TODO: Icon for splash screen </item> -->
         <item name="android:background">@drawable/ic_splashscreen</item>
         <item name="android:windowBackground">@color/jeopardy_blue</item>
         <item name="android:windowNoTitle">true</item>

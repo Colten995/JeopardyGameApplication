@@ -44,7 +44,6 @@
     <string name="wager">Wager:</string>
 
     <string name="enter_final_jeopardy_wager">Enter final jeopardy wager below</string>
-    <!-- TODO: Include a textView indicating the maximum wager-->
     <string name="click_button_to_start_timer">Click this button to start the final jeopardy timer</string>
     <string name="start_final_jeopardy_timer">Start Final Jeopardy Timer</string>
 
@@ -63,6 +62,8 @@
     <string name="high_score_title">High Scores</string>
     <string name="reset_all_scores">Reset All Scores</string>
     <string name="no_scores">No Scores Available</string>
+
+    <string name="current_user">Current User:</string>
 
     <string name="first_round_title">First Round</string>
     <!-- TODO: Remove or change this placeholder text -->
