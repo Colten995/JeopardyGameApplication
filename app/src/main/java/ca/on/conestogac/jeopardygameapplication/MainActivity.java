@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonDoubleJeopardy;
     private Button buttonBackToFirstRound;
     private Button buttonFinalJeopardy;
+    private Button logOut;
     private TextView textViewScore;
     private TextView textViewRoundTitle;
     private TextView textViewScoreLabel;
@@ -100,7 +101,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints3 = findViewById(R.id.buttonPoints3);
         buttonPoints4 = findViewById(R.id.buttonPoints4);
         buttonPoints5 = findViewById(R.id.buttonPoints5);
-
+        logOut = findViewById(R.id.btnLogOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
         buttonNewGame = findViewById(R.id.buttonNewGame);
 
         buttonNewGame.setOnClickListener(new View.OnClickListener() {

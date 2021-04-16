@@ -5,8 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,7 @@ public class HighScoreActivity extends AppCompatActivity {
     private TableLayout highScoreTableLayout;
     private LinearLayout linearLayoutHighScores;
     private TextView textViewNoHighScores;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,10 @@ public class HighScoreActivity extends AppCompatActivity {
         highScoreTableLayout = findViewById(R.id.tableLayoutHighScores);
         linearLayoutHighScores = findViewById(R.id.linearLayoutHighScores);
         textViewNoHighScores = findViewById(R.id.textViewNoHighScores);
-
+        name = findViewById(R.id.textViewUsernameLabel);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String userName = sharedPref.getString("userName", "Username");
+        name.setText(userName);
         buttonResetAllScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +74,7 @@ public class HighScoreActivity extends AppCompatActivity {
             }
         });
 
-        refreshHighScores();
+        //refreshHighScores();
     }
 
     @Override
@@ -87,7 +93,6 @@ public class HighScoreActivity extends AppCompatActivity {
         }
         return ret;
     }
-
     private void ShowScores() {
         Cursor cursor = scoreDatabaseHelper.GetScore();
         HighscoreRecord highscoreRecord;

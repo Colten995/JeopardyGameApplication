@@ -27,6 +27,7 @@
     <string name="username">Username</string>
     <string name="name">Name</string>
     <string name="back">Back</string>
+    <string name="logout">Log Out</string>
 
     <string name="back_to_first_round">Back To First Round</string>
     <string name="double_jeopardy">Double Jeopardy</string>
