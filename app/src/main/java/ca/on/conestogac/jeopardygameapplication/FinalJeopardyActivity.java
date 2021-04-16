@@ -97,7 +97,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    //TODO: Take away wager from score
+                    subtractWagerFromScore();
                     animateScore(false);
                 }
             }
@@ -205,6 +205,13 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     {
         int finalJeopardyWager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
         score += finalJeopardyWager;
+        textViewScore.setText(String.valueOf(score));
+    }
+
+    public void subtractWagerFromScore()
+    {
+        int finalJeopardyWager = Integer.parseInt(editTextFinalJeopardyWager.getText().toString());
+        score -= finalJeopardyWager;
         textViewScore.setText(String.valueOf(score));
     }
 
