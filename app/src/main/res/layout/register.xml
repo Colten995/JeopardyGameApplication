@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     tools:context=".UserRegister">
 
-    <TextView
-        android:id="@+id/txtWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="92dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="78dp"
-        android:layout_marginBottom="439dp"
-        android:text="@string/welcome"
-        android:textSize="24sp" />
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="210dp"
+        android:layout_width="361dp"
+        android:layout_height="333dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="214dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43">
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="288dp"
+            android:layout_height="92dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="@string/welcome"
+            android:textAlignment="viewStart"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/edUserName1"
@@ -39,8 +38,7 @@
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
-            android:paddingTop="23dp"
-            />
+            android:paddingTop="5dp" />
 
         <EditText
             android:id="@+id/edPasswordRegister"
@@ -49,8 +47,7 @@
             android:ems="10"
             android:hint="@string/password_registration"
             android:inputType="textPersonName"
-            android:paddingTop="23dp"
-             />
+            android:paddingTop="5dp" />
 
         <EditText
             android:id="@+id/edReEnterPassword"
@@ -59,20 +56,8 @@
             android:ems="10"
             android:hint="@string/enter_password"
             android:inputType="textPersonName"
-            android:paddingTop="23dp"
-            />
-    </LinearLayout>
+            android:paddingTop="5dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="131dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="70dp"
-        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnRegister"
@@ -87,9 +72,10 @@
             android:id="@+id/txtLogin"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:text="@string/login_"
             android:textAlignment="center"
             android:textSize="18sp" />
     </LinearLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

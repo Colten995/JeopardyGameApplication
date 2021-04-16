@@ -45,20 +45,13 @@ public class JeopardyApplication extends Application {
         db.execSQL(addGameStatement);
     }
 
-    public int getHighScores(){
+
+    public Cursor getHighScores(){
         SQLiteDatabase db = helper.getReadableDatabase();
         //Lets us write the query out in SQL instead of trying to use other built-in functions to try and execute the SQL such as query(), or insert()
-        Cursor cursor = db.rawQuery("SELECT * FROM tbl_scores", null);
-       // SELECT user_id, username, MAX(score) FROM tbl_scores GROUP BY user_id
-        int ret;
+        Cursor cursor = db.rawQuery("SELECT user_id, username, MAX(score) FROM tbl_scores GROUP BY user_id", null);
 
-        cursor.moveToFirst();
-        //TODO get all scores and return an array of ints
-        ret = cursor.getInt(2);
-        //Very important!!
-        cursor.close();
-
-        return ret;
+        return cursor;
     }
     public void resetTableScores()
     {
