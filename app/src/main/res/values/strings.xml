@@ -44,7 +44,6 @@
     <string name="wager">Wager:</string>
 
     <string name="enter_final_jeopardy_wager">Enter final jeopardy wager below</string>
-    <!-- TODO: Include a textView indicating the maximum wager-->
     <string name="click_button_to_start_timer">Click this button to start the final jeopardy timer</string>
     <string name="start_final_jeopardy_timer">Start Final Jeopardy Timer</string>
 

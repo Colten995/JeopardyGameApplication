@@ -215,9 +215,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*TODO: Make app retain state when resuming using shared prefs
-    TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
-     */
+
+    //TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
+
     @Override
     protected void onPause() {
         Editor ed = sharedPref.edit();

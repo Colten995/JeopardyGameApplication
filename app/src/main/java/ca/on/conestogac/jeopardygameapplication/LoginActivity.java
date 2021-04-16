@@ -107,7 +107,6 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
                 ed.putString("userName", name);
 
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                //TODO: Get user_id and name and save it to shared preferences
 
             }
         }
