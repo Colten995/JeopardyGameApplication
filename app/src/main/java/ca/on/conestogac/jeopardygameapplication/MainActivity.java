@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints3 = findViewById(R.id.buttonPoints3);
         buttonPoints4 = findViewById(R.id.buttonPoints4);
         buttonPoints5 = findViewById(R.id.buttonPoints5);
+
         logOut = findViewById(R.id.btnLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
+
         buttonNewGame = findViewById(R.id.buttonNewGame);
 
         buttonNewGame.setOnClickListener(new View.OnClickListener() {

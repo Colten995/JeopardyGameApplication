@@ -80,6 +80,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                 if (v.getId() == R.id.buttonYes && validateFinalJeopardyWager())
                 {
                     addWagerToScore();
+                    //TODO: animate score the same as main activity
                 }
             }
         };
