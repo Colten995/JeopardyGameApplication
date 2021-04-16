@@ -118,7 +118,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
                 ((JeopardyApplication)getApplication()).addGame(score, user_id, username);
 
-                //TODO: reset score to 0 in shared prefs
                 mainActivityIntent.putExtra(FINAL_JEOPARDY_RESET_GAME_KEY, true);
                 startActivity(mainActivityIntent);
             }

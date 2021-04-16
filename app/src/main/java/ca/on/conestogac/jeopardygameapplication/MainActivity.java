@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //instantiate our drawer layout ui reference and make a new toggle button for our navigation drawer menu
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -231,18 +232,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
-        isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
-        username = sharedPref.getString("userName", "");
-        user_id = sharedPref.getInt("userId", 0);
 
-        textViewScore.setText(String.valueOf(score));
-        textViewCurrentUser.setText(username);
-        if(isDoubleJeopardyRound)
+        //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
+        Intent finalJeopardyIntent = getIntent();
+        resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        if (resetGame)
         {
-            goToDoubleJeopardyRound();
+            doResetGame();
         }
-        //TODO: Re-populate current user
+        else
+        {
+            score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+            isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
+            username = sharedPref.getString("userName", "");
+            user_id = sharedPref.getInt("userId", 0);
+
+            textViewScore.setText(String.valueOf(score));
+            textViewCurrentUser.setText(username);
+            if(isDoubleJeopardyRound)
+            {
+                goToDoubleJeopardyRound();
+            }
+        }
     }
 
     private void doResetGame() {
