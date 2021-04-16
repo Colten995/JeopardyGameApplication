@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isDoubleJeopardyRound = false;
     private boolean resetGame = false;
     private int scoreAnimationCounter = 0;
+    private String username;
+    private int user_id;
 
     private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
@@ -204,7 +206,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
 
+        textViewCurrentUser.setText(username);
 
 
     }
@@ -228,8 +233,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
         isDoubleJeopardyRound = sharedPref.getBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
 
         textViewScore.setText(String.valueOf(score));
+        textViewCurrentUser.setText(username);
         if(isDoubleJeopardyRound)
         {
             goToDoubleJeopardyRound();
