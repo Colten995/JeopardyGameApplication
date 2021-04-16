@@ -25,8 +25,11 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
     private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
     private final int DEFAULT_SCORE = 0;
+    private String username;
+    private int user_id;
 
     private TextView textViewScore;
+    private TextView textViewCurrentUser;
     private EditText editTextFinalJeopardyWager;
     private Button buttonFirstRound;
     private Button buttonDoubleJeopardy;
@@ -48,6 +51,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
 
         textViewScore = findViewById(R.id.textViewScore);
+        textViewCurrentUser = findViewById(R.id.textViewCurrentUser);
         buttonYes = findViewById(R.id.buttonYes);
         buttonNo = findViewById(R.id.buttonNo);
         buttonFirstRound = findViewById(R.id.buttonFirstRound);
@@ -113,6 +117,10 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
+
+        textViewCurrentUser.setText(username);
         
     }
 
@@ -132,6 +140,10 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
         score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
         textViewScore.setText(String.valueOf(score));
+
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
+        textViewCurrentUser.setText(username);
 
     }
 
