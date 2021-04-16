@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewScore;
     private TextView textViewRoundTitle;
     private TextView textViewScoreLabel;
+    private TextView textViewCurrentUser;
 
     private Timer timerForScoreAnimation = null;
     private Bundle dailyDoubleDialogBundle = new Bundle();
@@ -176,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewScore = findViewById(R.id.textViewScore);
         textViewRoundTitle = findViewById(R.id.textViewRoundTitle);
         textViewScoreLabel = findViewById(R.id.textViewScoreLabel);
+        textViewCurrentUser = findViewById(R.id.textViewCurrentUser);
 
         buttonPoints1.setOnClickListener(pointsListener);
         buttonPoints2.setOnClickListener(pointsListener);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     }
     @Override
     protected void onPause() {
-        SharedPreferences.Editor editor = sharedPref.edit();
+        Editor editor = sharedPref.edit();
 
         editor.putInt("userId", userId);
         editor.putString("userName", name);
@@ -98,6 +99,13 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         if (isPassword&& isUsername){
             if (VerifyUser()){
                 Toast.makeText(getApplicationContext(), " Login Successful, Welcome "+name, Toast.LENGTH_SHORT).show();
+
+                //Put the username and id into the shared preferences after logging in
+                //TODO: Use a constant for the shared pref key
+                Editor ed = sharedPref.edit();
+                ed.putInt("userId", userId);
+                ed.putString("userName", name);
+
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 //TODO: Get user_id and name and save it to shared preferences
 
