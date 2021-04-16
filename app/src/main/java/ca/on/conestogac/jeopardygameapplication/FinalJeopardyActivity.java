@@ -118,6 +118,11 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
                 ((JeopardyApplication)getApplication()).addGame(score, user_id, username);
 
+                //Reset the score in shared preferences
+                Editor ed = sharedPref.edit();
+                ed.putInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+                ed.commit();
+
                 mainActivityIntent.putExtra(FINAL_JEOPARDY_RESET_GAME_KEY, true);
                 startActivity(mainActivityIntent);
             }
