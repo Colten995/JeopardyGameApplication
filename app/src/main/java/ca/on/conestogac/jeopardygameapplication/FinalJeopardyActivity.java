@@ -26,7 +26,6 @@ import java.util.TimerTask;
 public class FinalJeopardyActivity extends AppCompatActivity {
 
     private int score;
-    private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
     private final String SHARED_PREF_KEY_RESET_GAME = "finalJeopardyResetGameFlag";
     private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
     private final int DEFAULT_SCORE = 0;
@@ -103,7 +102,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         View.OnClickListener buttonToFirstAndSecondRoundListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainActivityIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
                 startActivity(mainActivityIntent);
             }
 
@@ -115,9 +113,7 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
                 ((JeopardyApplication)getApplication()).addGame(score, user_id, username);
 
-                //Reset the score in shared preferences
                 Editor ed = sharedPref.edit();
-                ed.putInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
                 ed.putBoolean(SHARED_PREF_KEY_RESET_GAME, true);
                 ed.commit();
 
@@ -134,7 +130,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         username = sharedPref.getString("userName", "");
         user_id = sharedPref.getInt("userId", 0);
         score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
-
 
         textViewCurrentUser.setText(username);
         
@@ -181,8 +176,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     }
 
     //Validate the final jeopardy wager to make sure it isn't greater than the score
-
-
     public boolean validateFinalJeopardyWager()
     {
         boolean isValidWager;
