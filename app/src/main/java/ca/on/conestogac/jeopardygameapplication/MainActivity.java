@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String username;
     private int user_id;
 
-    private final String FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY = "finalJeopardyScoreData";
-    private final String FINAL_JEOPARDY_RESET_GAME_KEY = "finalJeopardyResetGameFlag";
     private final int DEFAULT_SCORE = 0;
     private final int MAXIMUM_POINTS_FIRST_ROUND = 1000;
     private final int MAXIMUM_POINTS_DOUBLE_JEOPARDY = 2000;
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String DIALOG_PARENT_VIEW_TAG = "Main Activity";
     private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
     private final String SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY = "isDoubleJeopardy";
+    private final String SHARED_PREF_KEY_RESET_GAME = "finalJeopardyResetGameFlag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 Intent finalJeopardyIntent = new Intent(getApplicationContext(), FinalJeopardyActivity.class);
-                finalJeopardyIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
+                //finalJeopardyIntent.putExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, score);
                 startActivity(finalJeopardyIntent);
             }
         });
@@ -188,35 +187,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints4.setOnClickListener(pointsListener);
         buttonPoints5.setOnClickListener(pointsListener);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
+        resetGame = sharedPref.getBoolean(SHARED_PREF_KEY_RESET_GAME, false);
+
+        textViewCurrentUser.setText(username);
+
+        //Check for double jeopardy
         if(isDoubleJeopardyRound)
         {
             goToDoubleJeopardyRound();
         }
 
         //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
-        Intent finalJeopardyIntent = getIntent();
-        resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        //Intent finalJeopardyIntent = getIntent();
+        //resetGame = finalJeopardyIntent.getBooleanExtra(SHARED_PREF_KEY_RESET_GAME, false);
+
         if (resetGame)
         {
             doResetGame();
         }
         else
         {
-            score = finalJeopardyIntent.getIntExtra(FINAL_JEOPARDY_INTENT_SCORE_DATA_KEY, DEFAULT_SCORE);
+            score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
             textViewScore.setText(String.valueOf(score));
         }
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        username = sharedPref.getString("userName", "");
-        user_id = sharedPref.getInt("userId", 0);
-
-        textViewCurrentUser.setText(username);
-
-
     }
-
-
-    //TODO: Change intents to shared prefs instead to store the score, double_jeopardy state and reset game flag
 
     @Override
     protected void onPause() {
@@ -234,8 +232,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
 
         //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
-        Intent finalJeopardyIntent = getIntent();
-        resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        //Intent finalJeopardyIntent = getIntent();
+        //resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+
+        username = sharedPref.getString("userName", "");
+        user_id = sharedPref.getInt("userId", 0);
+        resetGame = sharedPref.getBoolean(SHARED_PREF_KEY_RESET_GAME, false);
+
         if (resetGame)
         {
             doResetGame();
@@ -257,6 +260,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void doResetGame() {
+        //reset shared preferences
+        Editor ed = sharedPref.edit();
+        ed.putBoolean(SHARED_PREF_KEY_RESET_GAME, false);
+        ed.putInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
+        ed.putBoolean(SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY, false);
+        ed.commit();
+
         score = 0;
         isDoubleJeopardyRound = false;
         textViewScore.setText(String.valueOf(score));
