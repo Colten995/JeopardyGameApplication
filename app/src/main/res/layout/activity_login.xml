@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,40 +7,34 @@
     android:background="@drawable/gradient"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/imgJeopardy"
-        android:layout_width="wrap_content"
-        android:layout_height="114dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="129dp"
-        android:layout_marginBottom="396dp"
-        app:layout_constraintBottom_toTopOf="@+id/edUserName2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/jeopardy"
-        tools:ignore="NotSibling" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="135dp"
+        android:layout_width="397dp"
+        android:layout_height="326dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="217dp"
 
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="251dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgJeopardy"
+            android:layout_width="wrap_content"
+            android:layout_height="114dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="119dp"
+
+            android:layout_marginEnd="129dp"
+
+            app:srcCompat="@drawable/jeopardy"
+            tools:ignore="NotSibling" />
 
         <EditText
             android:id="@+id/edUserName2"
@@ -51,14 +45,8 @@
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
-            android:paddingTop="23dp" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="92dp"
-            app:passwordToggleEnabled="true"
-            tools:layout_editor_absoluteY="248dp">
+             />
+
 
         <EditText
             android:id="@+id/edPassword"
@@ -67,21 +55,7 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:paddingTop="23dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="325dp"
-        android:layout_height="110dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="49dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="122dp"
-        android:orientation="vertical">
+             />
 
         <Button
             android:id="@+id/btnLogin"
@@ -89,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/bordeau"
-            android:paddingTop="23dp"
+
             android:text="@string/login"
             android:textSize="24sp" />
 
@@ -100,6 +74,10 @@
             android:text="@string/register"
             android:textAlignment="center"
             android:textSize="24sp" />
+
+
     </LinearLayout>
 
-</RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
