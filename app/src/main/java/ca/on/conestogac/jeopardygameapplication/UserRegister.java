@@ -126,6 +126,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
         if(isPassword&&isUsername&& isPassword1){
             Toast.makeText(getApplicationContext()," Register successfully, enjoy your game", Toast.LENGTH_SHORT).show();
             SaveUserName(edUsername.getText().toString(), edPassword.getText().toString());
+            //it goes back to login activity
         }
     }
 

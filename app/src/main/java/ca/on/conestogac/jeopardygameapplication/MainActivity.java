@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(validateWager(wager))
         {
-            score += 2 * wager;
+            score += wager;
             textViewScore.setText(String.valueOf(score));
             animateScore(true);
         }
@@ -310,9 +310,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onDailyDoubleDialogNoButtonClick(DialogFragment dialog, int wager) {
-        score -= 2 * wager;
-        textViewScore.setText(String.valueOf(score));
-        animateScore(false);
+        if(validateWager(wager))
+        {
+            score -= wager;
+            textViewScore.setText(String.valueOf(score));
+            animateScore(false);
+        }
     }
 
     public void goToDoubleJeopardyRound()
@@ -355,15 +358,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //check if wager is negative
             if(wager > 0)
             {
-                if (score == 0)
-                {
-                    if (wager > maximumWager)
-                    {
-                        Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
-                        isValidWager = false;
-                    }
-                }
-                else if (wager > maximumWager)
+                if (wager > maximumWager)
                 {
                     Snackbar.make(mainView, getString(R.string.wager_greater_than_maximum_amount_allowed) + maximumWager, Snackbar.LENGTH_LONG).show();
                     isValidWager = false;
@@ -439,6 +434,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            //Set text color back to black after animating
                             textViewScore.setTextColor(getColor(R.color.black));
                             textViewScoreLabel.setTextColor(getColor(R.color.black));
                         }

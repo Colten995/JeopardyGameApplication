@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Check for stay Logged in
+
         txtRegister = findViewById(R.id.txtSignup);
         txtUserName = findViewById(R.id.edUserName2);
         txtPassword = findViewById(R.id.edPassword);
@@ -99,12 +101,6 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         if (isPassword&& isUsername){
             if (VerifyUser()){
                 Toast.makeText(getApplicationContext(), " Login Successful, Welcome "+name, Toast.LENGTH_SHORT).show();
-
-                //Put the username and id into the shared preferences after logging in
-                //TODO: Use a constant for the shared pref key
-                Editor ed = sharedPref.edit();
-                ed.putInt("userId", userId);
-                ed.putString("userName", name);
 
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
