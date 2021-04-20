@@ -4,56 +4,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
-
-import org.w3c.dom.Text;
 
 public class HighScoreActivity extends AppCompatActivity {
 
-    private TextView textViewHighScores;
-    //Button back;
-    ScoreDatabaseHelper scoreDatabaseHelper;
-    TextView name;
-    TextView score;
     private Button buttonResetAllScores;
-
     private TableLayout highScoreTableLayout;
-    private LinearLayout linearLayoutHighScores;
     private TextView textViewNoHighScores;
-    private SharedPreferences sharedPref;
 
-    private String username;
-    private int user_id;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
-        //back = findViewById(R.id.btnBack);
-        /*name = findViewById(R.id.txtName);
-        score = findViewById(R.id.txtScore);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-        scoreDatabaseHelper = new ScoreDatabaseHelper(this);
-//        ShowScores();*/
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -63,12 +36,8 @@ public class HighScoreActivity extends AppCompatActivity {
 
         buttonResetAllScores = findViewById(R.id.buttonResetScores);
         highScoreTableLayout = findViewById(R.id.tableLayoutHighScores);
-        linearLayoutHighScores = findViewById(R.id.linearLayoutHighScores);
         textViewNoHighScores = findViewById(R.id.textViewNoHighScores);
-       // name = findViewById(R.id.textViewUsernameLabel);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String userName = sharedPref.getString("userName", "Username");
-       // name.setText(userName);
         buttonResetAllScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,30 +65,7 @@ public class HighScoreActivity extends AppCompatActivity {
         }
         return ret;
     }
-    private void ShowScores() {
-        Cursor cursor = scoreDatabaseHelper.GetScore();
-        HighscoreRecord highscoreRecord;
 
-        String names = "";
-        String scores = "";
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    highscoreRecord = new HighscoreRecord();
-                    highscoreRecord.setId(cursor.getInt(cursor.getColumnIndex("userId")));
-                    highscoreRecord.setUserName(cursor.getString(cursor.getColumnIndex("name")));
-                    highscoreRecord.setScore(cursor.getInt(cursor.getColumnIndex("score")));
-                    names += highscoreRecord.getUserName() + "\n";
-                    scores += highscoreRecord.getScore() + "\n";
-
-                } while (cursor.moveToNext());
-
-                name.setText(names);
-                score.setText(scores);
-            }
-        }
-
-    }
     private void refreshHighScores() {
         //Display all high scores in the table
         Cursor highScoreCursor = ((JeopardyApplication)getApplication()).getHighScores();
