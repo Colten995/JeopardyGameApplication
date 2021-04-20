@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/settings">
+        <SwitchPreferenceCompat
+            android:id="@+id/switchPreferenceCompat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:key="@string/stay_loggedIn"
+            app:title="@string/stay_loggedIn" />
+        <SwitchPreferenceCompat
+            app:key="@string/dark_theme"
+            app:title="@string/dark_theme" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

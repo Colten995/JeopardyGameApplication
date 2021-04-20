@@ -288,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
         else if(v.equals(settings)){
+            startActivity(new Intent(this, SettingsActivity.class));
         }
     }
 

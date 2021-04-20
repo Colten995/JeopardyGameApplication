@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.on.conestogac.jeopardygameapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".JeopardyApplication"
         android:allowBackup="true"
@@ -10,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".HighScoreActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/high_score_title"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".HighScoreActivity"
+            android:label="@string/high_score_title"
+            android:theme="@style/AppTheme" />
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +32,14 @@
         <activity android:name=".UserRegister" />
         <activity android:name=".DailyDoubleDialog" />
         <activity android:name=".PointsDialog" />
-        <activity android:name=".FinalJeopardyActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".FinalJeopardyActivity"
+            android:theme="@style/AppTheme" />
+
         <service
             android:name=".FinalJeopardyTimerService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
