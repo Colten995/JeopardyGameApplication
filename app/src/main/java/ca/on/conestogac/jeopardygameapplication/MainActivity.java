@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
     private final String SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY = "isDoubleJeopardy";
     private final String SHARED_PREF_KEY_RESET_GAME = "finalJeopardyResetGameFlag";
+    private final String Stay_Logged_In = "Stay Logged In";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +110,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean stayLogged = sharedPref.getBoolean(Stay_Logged_In, false);
+                if (stayLogged){
+                    Editor editor = sharedPref.edit();
+
+                    editor.putBoolean(Stay_Logged_In, false);
+                    editor.commit();
+                }
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });

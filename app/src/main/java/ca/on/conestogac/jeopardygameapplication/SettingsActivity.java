@@ -1,6 +1,8 @@
 package ca.on.conestogac.jeopardygameapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -14,7 +16,9 @@ import androidx.preference.SwitchPreference;
 import androidx.preference.SwitchPreferenceCompat;
 
 public class SettingsActivity extends AppCompatActivity {
-
+    private static SharedPreferences sharedPref;
+    private static boolean stayLogged;
+    private static String Stay_Logged_In = "Stay Logged In";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +33,16 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -68,14 +80,19 @@ public class SettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     if (stayLoggedIn.isChecked()) {
                         Toast.makeText(getContext(), "Dont Stay Logged In", Toast.LENGTH_SHORT).show();
-
+                        stayLogged = false;
                         // Checked the switch programmatically
                         stayLoggedIn.setChecked(false);
                     } else {
                         Toast.makeText(getContext(), "Stay Logged In", Toast.LENGTH_SHORT).show();
+                        stayLogged = true;
                         // Unchecked the switch programmatically
                         stayLoggedIn.setChecked(true);
                     }
+                    SharedPreferences.Editor editor = sharedPref.edit();
+
+                    editor.putBoolean(Stay_Logged_In, stayLogged);
+                    editor.commit();
                     return true;
                 }
             });

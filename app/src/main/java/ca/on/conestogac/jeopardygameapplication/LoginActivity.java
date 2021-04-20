@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     String name;
     int userId;
     private SharedPreferences sharedPref;
+    private boolean stayLogged;
+    private String Stay_Logged_In = "Stay Logged In";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,11 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         txtRegister.setOnClickListener(this);
         userDatabaseHelper = new UserDatabaseHelper(this);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        stayLogged = sharedPref.getBoolean(Stay_Logged_In, false);
+        if (stayLogged){
+            name = sharedPref.getString("userName", "");
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
     }
     @Override
     protected void onPause() {
