@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class JeopardyApplication extends Application {
 
     private static final String DB_NAME = "db_scores";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private SQLiteOpenHelper helper;
     @Override
