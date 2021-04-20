@@ -86,15 +86,17 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         View.OnClickListener buttonYesNoListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getId() == R.id.buttonYes && validateFinalJeopardyWager())
-                {
-                    addWagerToScore();
-                    animateScore(true);
-                }
-                else
-                {
-                    subtractWagerFromScore();
-                    animateScore(false);
+                if (validateFinalJeopardyWager()) {
+                    if (v.getId() == R.id.buttonYes)
+                    {
+                        addWagerToScore();
+                        animateScore(true);
+                    }
+                    else
+                    {
+                        subtractWagerFromScore();
+                        animateScore(false);
+                    }
                 }
             }
         };
