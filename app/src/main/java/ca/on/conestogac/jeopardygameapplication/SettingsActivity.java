@@ -62,6 +62,23 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            SwitchPreferenceCompat stayLoggedIn = findPreference("Stay Logged In");
+            stayLoggedIn.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object o) {
+                    if (stayLoggedIn.isChecked()) {
+                        Toast.makeText(getContext(), "Dont Stay Logged In", Toast.LENGTH_SHORT).show();
+
+                        // Checked the switch programmatically
+                        stayLoggedIn.setChecked(false);
+                    } else {
+                        Toast.makeText(getContext(), "Stay Logged In", Toast.LENGTH_SHORT).show();
+                        // Unchecked the switch programmatically
+                        stayLoggedIn.setChecked(true);
+                    }
+                    return true;
+                }
+            });
         }
     }
 
