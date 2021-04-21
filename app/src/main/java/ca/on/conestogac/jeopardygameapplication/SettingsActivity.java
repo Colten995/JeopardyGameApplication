@@ -18,9 +18,9 @@ import androidx.preference.SwitchPreferenceCompat;
 public class SettingsActivity extends AppCompatActivity {
     private static SharedPreferences sharedPref;
     private static boolean stayLogged;
-    private static String Stay_Logged_In = "Stay Logged In";
+    private final static String SHARED_PREF_KEY_STAY_LOGGED_IN = "stayLoggedIn";
     private static boolean darkTheme;
-    private static String Dark_Theme = "Dark Theme";
+    private final static String SHARED_PREF_KEY_DARK_THEME = "darkTheme";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Toast.makeText(getContext(), "Light Mode", Toast.LENGTH_SHORT).show();
                         SharedPreferences.Editor editor = sharedPref.edit();
                         darkTheme = false;
-                        editor.putBoolean(Dark_Theme, darkTheme);
+                        editor.putBoolean(SHARED_PREF_KEY_DARK_THEME, darkTheme);
                         editor.commit();
                         // Checked the switch programmatically
                         themeMode.setChecked(false);
@@ -74,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Toast.makeText(getContext(), "Dark Mode", Toast.LENGTH_SHORT).show();
                         SharedPreferences.Editor editor = sharedPref.edit();
                         darkTheme = true;
-                        editor.putBoolean(Dark_Theme, darkTheme);
+                        editor.putBoolean(SHARED_PREF_KEY_DARK_THEME, darkTheme);
                         editor.commit();
                         // Unchecked the switch programmatically
                         themeMode.setChecked(true);
@@ -99,7 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                     SharedPreferences.Editor editor = sharedPref.edit();
 
-                    editor.putBoolean(Stay_Logged_In, stayLogged);
+                    editor.putBoolean(SHARED_PREF_KEY_STAY_LOGGED_IN, stayLogged);
                     editor.commit();
                     return true;
                 }

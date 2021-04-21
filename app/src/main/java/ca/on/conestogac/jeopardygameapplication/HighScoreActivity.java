@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.media.RatingCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +24,28 @@ public class HighScoreActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
 
+    private final String SHARED_PREF_KEY_DARK_THEME = "darkTheme";
+    private boolean setDarkTheme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_high_score);
 
+        super.onCreate(savedInstanceState);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        if(setDarkTheme == true)
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+        {
+            setTheme(R.style.AppTheme);
+        }
+
+        setContentView(R.layout.activity_high_score);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -37,7 +55,7 @@ public class HighScoreActivity extends AppCompatActivity {
         buttonResetAllScores = findViewById(R.id.buttonResetScores);
         highScoreTableLayout = findViewById(R.id.tableLayoutHighScores);
         textViewNoHighScores = findViewById(R.id.textViewNoHighScores);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         buttonResetAllScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +65,22 @@ public class HighScoreActivity extends AppCompatActivity {
         });
 
         refreshHighScores();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        boolean oldTheme = setDarkTheme;
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        //If the theme changes restart the activity
+        if(setDarkTheme != oldTheme)
+        {
+            oldTheme = setDarkTheme;
+            finish();
+            startActivity(getIntent());
+        }
     }
 
     @Override

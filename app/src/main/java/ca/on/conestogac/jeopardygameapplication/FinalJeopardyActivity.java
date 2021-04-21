@@ -28,10 +28,12 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     private int score;
     private final String SHARED_PREF_KEY_RESET_GAME = "finalJeopardyResetGameFlag";
     private final String SHARED_PREF_KEY_SCORE = "CurrentScore";
+    private final String SHARED_PREF_KEY_DARK_THEME = "darkTheme";
     private final int DEFAULT_SCORE = 0;
     private String username;
     private int user_id;
     private int scoreAnimationCounter = 0;
+    private boolean setDarkTheme;
 
     private TextView textViewScore;
     private TextView textViewCurrentUser;
@@ -50,6 +52,20 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        if(setDarkTheme == true)
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+        {
+            setTheme(R.style.AppTheme);
+        }
+
         setContentView(R.layout.activity_final_jeopardy);
 
         Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -128,7 +144,6 @@ public class FinalJeopardyActivity extends AppCompatActivity {
         buttonDoubleJeopardy.setOnClickListener(buttonToFirstAndSecondRoundListener);
         buttonFirstRound.setOnClickListener(buttonToFirstAndSecondRoundListener);
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         username = sharedPref.getString("userName", "");
         user_id = sharedPref.getInt("userId", 0);
         score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
@@ -150,6 +165,17 @@ public class FinalJeopardyActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        boolean oldTheme = setDarkTheme;
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        //If the theme changes restart the activity
+        if(setDarkTheme != oldTheme)
+        {
+            oldTheme = setDarkTheme;
+            finish();
+            startActivity(getIntent());
+        }
 
         score = sharedPref.getInt(SHARED_PREF_KEY_SCORE, DEFAULT_SCORE);
         username = sharedPref.getString("userName", "");

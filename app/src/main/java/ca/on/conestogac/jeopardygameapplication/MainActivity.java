@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int score;
     private boolean isDoubleJeopardyRound = false;
     private boolean resetGame = false;
+    private boolean setDarkTheme;
     private int scoreAnimationCounter = 0;
     private String username;
     private int user_id;
@@ -68,12 +69,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String SHARED_PREF_KEY_IS_DOUBLE_JEOPARDY = "isDoubleJeopardy";
     private final String SHARED_PREF_KEY_RESET_GAME = "finalJeopardyResetGameFlag";
     private final String Stay_Logged_In = "Stay Logged In";
+    private final String SHARED_PREF_KEY_DARK_THEME = "darkTheme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        if(setDarkTheme == true)
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+        {
+            setTheme(R.style.AppTheme);
+        }
+
         setContentView(R.layout.activity_main);
 
         //instantiate our drawer layout ui reference and make a new toggle button for our navigation drawer menu
@@ -195,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonPoints4.setOnClickListener(pointsListener);
         buttonPoints5.setOnClickListener(pointsListener);
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         username = sharedPref.getString("userName", "");
         user_id = sharedPref.getInt("userId", 0);
         resetGame = sharedPref.getBoolean(SHARED_PREF_KEY_RESET_GAME, false);
@@ -239,9 +253,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        //If finish game button was clicked reset the game otherwise populate the score with the final jeopardy score from the final jeopardy acitivity
-        //Intent finalJeopardyIntent = getIntent();
-        //resetGame = finalJeopardyIntent.getBooleanExtra(FINAL_JEOPARDY_RESET_GAME_KEY, false);
+        boolean oldTheme = setDarkTheme;
+        setDarkTheme = sharedPref.getBoolean(SHARED_PREF_KEY_DARK_THEME, false);
+
+        //If the theme changes restart the activity
+        if(setDarkTheme != oldTheme)
+        {
+            oldTheme = setDarkTheme;
+            finish();
+            startActivity(getIntent());
+        }
 
         username = sharedPref.getString("userName", "");
         user_id = sharedPref.getInt("userId", 0);
