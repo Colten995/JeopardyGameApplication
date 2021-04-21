@@ -19,6 +19,8 @@ public class SettingsActivity extends AppCompatActivity {
     private static SharedPreferences sharedPref;
     private static boolean stayLogged;
     private static String Stay_Logged_In = "Stay Logged In";
+    private static boolean darkTheme;
+    private static String Dark_Theme = "Dark Theme";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -63,11 +64,18 @@ public class SettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     if (themeMode.isChecked()) {
                         Toast.makeText(getContext(), "Light Mode", Toast.LENGTH_SHORT).show();
-
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        darkTheme = false;
+                        editor.putBoolean(Dark_Theme, darkTheme);
+                        editor.commit();
                         // Checked the switch programmatically
                         themeMode.setChecked(false);
                     } else {
                         Toast.makeText(getContext(), "Dark Mode", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        darkTheme = true;
+                        editor.putBoolean(Dark_Theme, darkTheme);
+                        editor.commit();
                         // Unchecked the switch programmatically
                         themeMode.setChecked(true);
                     }
