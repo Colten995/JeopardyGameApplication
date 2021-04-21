@@ -130,7 +130,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 textViewScore.setText(String.valueOf(highScoreCursor.getInt(2)));
                 tableRow.addView(textViewUsername);
                 tableRow.addView(textViewScore);
-                tableRow.setBackgroundColor(getColor(R.color.light_grey));
+                tableRow.setBackgroundColor(getColor(R.color.colorLightBlack));
                 highScoreTableLayout.addView(tableRow);
                 highScoreCursor.moveToNext();
             }

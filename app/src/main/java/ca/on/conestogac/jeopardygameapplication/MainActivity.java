@@ -432,6 +432,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void animateScore(boolean isCorrect)
     {
+        //Get the current color to restore it later
+        final int oldColor = textViewScore.getCurrentTextColor();
         textViewScore.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
         textViewScoreLabel.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
 
@@ -475,8 +477,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void run() {
                             //Set text color back to black after animating
-                            textViewScore.setTextColor(getColor(R.color.black));
-                            textViewScoreLabel.setTextColor(getColor(R.color.black));
+                            textViewScore.setTextColor(oldColor);
+                            textViewScoreLabel.setTextColor(oldColor);
                         }
                     });
                 }

@@ -241,6 +241,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
 
     public void animateScore(boolean isCorrect)
     {
+        //Get the current color to restore it later
+        final int oldColor = textViewScore.getCurrentTextColor();
         textViewScore.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
         textViewScoreLabel.setTextColor((isCorrect) ? getColor(R.color.green) : getColor(R.color.red));
 
@@ -283,8 +285,8 @@ public class FinalJeopardyActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            textViewScore.setTextColor(getColor(R.color.black));
-                            textViewScoreLabel.setTextColor(getColor(R.color.black));
+                            textViewScore.setTextColor(oldColor);
+                            textViewScoreLabel.setTextColor(oldColor);
                         }
                     });
                 }

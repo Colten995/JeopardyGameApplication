@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="colorLightBlack">#02000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkGrey">#6c6c6c</color>
 
@@ -19,5 +20,4 @@
     <color name="Smoky_black">#140200</color>
     <color name="blue">#128DFB</color>
     <color name="gray">#2E4E6A</color>
-    <color  name="gray_back">#B6CEED</color>
 </resources>
