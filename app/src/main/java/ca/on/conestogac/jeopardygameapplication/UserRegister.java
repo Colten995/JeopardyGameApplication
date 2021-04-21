@@ -40,6 +40,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btnRegister:
                 SetValidation();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.txtLogin:
                 // redirect to login activity
