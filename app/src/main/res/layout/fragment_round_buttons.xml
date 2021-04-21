@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/gray"
             android:text="@string/final_jeopardy"
             android:visibility="visible" />
 
@@ -23,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/gray"
             android:text="@string/back_to_first_round"
             android:visibility="gone" />
 
@@ -31,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/gray"
             android:text="@string/double_jeopardy" />
     </LinearLayout>
 

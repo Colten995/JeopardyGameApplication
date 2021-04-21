@@ -68,7 +68,7 @@
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
 
-        android:background="@color/white"
+        android:background="@color/blue"
         app:itemTextColor="@color/darkGrey"
         app:itemIconTint="@color/darkGrey"
 
@@ -84,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:backgroundTint="@color/gray"
                 android:text="@string/highscore"
                 app:layout_constraintBottom_toTopOf="@+id/btnSettings"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:backgroundTint="@color/gray"
                 android:text="@string/settings"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:backgroundTint="@color/gray"
                 android:text="@string/logout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

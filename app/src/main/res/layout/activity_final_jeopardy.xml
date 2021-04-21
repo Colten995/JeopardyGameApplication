@@ -24,6 +24,7 @@
                 android:name="ca.on.conestogac.jeopardygameapplication.CurrentUserFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 tools:layout="@layout/fragment_current_user" />
 
             <TextView
@@ -162,6 +163,7 @@
                 android:id="@+id/buttonFinishGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray"
                 android:text="@string/finish_game" />
 
         </LinearLayout>

@@ -23,6 +23,13 @@ public class SettingsActivity extends AppCompatActivity {
     private final static String SHARED_PREF_KEY_DARK_THEME = "darkTheme";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        darkTheme=sharedPref.getBoolean("darkTheme", false);
+        if(darkTheme){
+            setTheme(R.style.DarkTheme);
+        }else{
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         if (savedInstanceState == null) {
