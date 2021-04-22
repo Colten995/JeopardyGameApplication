@@ -17,7 +17,7 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
      private Button btnRegister;
      private TextView txtLogin;
      private EditText edPassword, edRePassword, edUsername;
-     Boolean isPassword, isUsername, isPassword1;
+     Boolean isPassword = false, isUsername = false, isPassword1 = true;
      UserDatabaseHelper userDatabaseHelper;
 
     @Override
@@ -40,7 +40,6 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btnRegister:
                 SetValidation();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.txtLogin:
                 // redirect to login activity
@@ -119,14 +118,15 @@ public class UserRegister extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(getApplicationContext(),"Invalid Password confirmation", Toast.LENGTH_SHORT).show();
             isPassword1=false;
         }
-        else{
-            isPassword1=true;
+        else if (!edRePassword.getText().toString().equals(edPassword.getText().toString())){
+            isPassword1=false;
         }
 
        // check if all fields have inputs
         if(isPassword&&isUsername&& isPassword1){
             Toast.makeText(getApplicationContext()," Register successfully, enjoy your game", Toast.LENGTH_SHORT).show();
             SaveUserName(edUsername.getText().toString(), edPassword.getText().toString());
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             //it goes back to login activity
         }
     }
